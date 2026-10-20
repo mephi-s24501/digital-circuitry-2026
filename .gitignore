@@ -1,0 +1,41 @@
+# General
+
+# Backups
+*.bak
+*.bkp
+
+# Temporary files
+temp/
+tmp/
+
+# Quartus Prime
+
+# Build artifacts
+.qsys_edit/
+db/
+incremental_db/
+output_files/
+*.done
+*.jdi
+*.pin
+*.rpt
+*.sld
+*.summary
+
+# User settings
+*.qws
+
+# Simulation outputs
+simulation/
+*.sdo
+*.vcd
+
+# Programming files
+*.cdf
+*.jam
+*.jbc
+*.jic
+*.pof
+*.rbf
+*.sof
+*.svf

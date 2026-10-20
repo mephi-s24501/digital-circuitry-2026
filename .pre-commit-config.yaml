@@ -1,0 +1,79 @@
+# Hooks without explicit stages run at pre-commit.
+default_stages: [pre-commit]
+default_install_hook_types: [pre-commit, commit-msg]
+
+minimum_prek_version: '0.5.5'
+default_language_version:
+  node: '24.22.0'
+
+# Exclude archived files from all checks.
+exclude: '^coursework-1/'
+
+repos:
+  # General text conventions
+  - repo: https://github.com/editorconfig-checker/editorconfig-checker
+    rev: v4.0.2
+    hooks:
+      - id: editorconfig-checker
+        args: [--disable-indent-size]
+
+  # File syntax and integrity
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-json
+      - id: check-yaml
+      - id: check-merge-conflict
+        args: [--assume-in-merge]
+      - id: check-case-conflict
+      - id: check-illegal-windows-names
+      - id: check-symlinks
+      - id: check-executables-have-shebangs
+      - id: check-added-large-files
+        args: [--maxkb=20480, --enforce-all]
+      - id: detect-private-key
+
+  # Markdown documents
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.23.3
+    hooks:
+      - id: markdownlint-cli2
+        args: [--config, config/markdownlint-cli2.yaml]
+
+  # Commit messages
+  - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
+    rev: v9.27.0
+    hooks:
+      - id: commitlint
+        stages: [commit-msg]
+        entry: commitlint --edit --config config/commitlint.config.cjs
+        additional_dependencies:
+          - '@commitlint/cli@21.2.4'
+          - '@commitlint/config-conventional@21.2.4'
+
+  # GitHub Actions
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.7.12
+    hooks:
+      - id: actionlint
+
+  # Shell scripts
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.11.0.1-1
+    hooks:
+      - id: shellcheck
+
+  - repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.13.1-1
+    hooks:
+      - id: shfmt
+        args: [--diff]
+
+  # VHDL style
+  - repo: https://github.com/jeremiah-c-leary/vhdl-style-guide
+    rev: 3.35.0
+    hooks:
+      - id: vsg
+        name: VHDL style (check only)
+        entry: vsg --all_phases --jobs=1 --configuration config/vsg.yaml --filename
+        stages: [manual]

@@ -1,0 +1,7 @@
+# https://github.com/DavidAnson/markdownlint#rules--aliases
+
+# MD013 line-length - Line length
+MD013: false
+
+# MD024 no-duplicate-heading - Multiple headings with the same content
+MD024: false
