@@ -4,12 +4,19 @@ default_install_hook_types: [pre-commit, commit-msg]
 
 minimum_prek_version: '0.5.5'
 default_language_version:
-  node: '24.22.0'
+  node: '24.22.1'
+  golang: '1.27.3'
 
 # Exclude archived files from all checks.
 exclude: '^coursework-1/'
 
 repos:
+  # GitHub Actions
+  - repo: https://github.com/rhysd/actionlint
+    rev: v1.7.12
+    hooks:
+      - id: actionlint
+
   # General text conventions
   - repo: https://github.com/editorconfig-checker/editorconfig-checker
     rev: v4.0.2
@@ -33,13 +40,6 @@ repos:
         args: [--maxkb=20480, --enforce-all]
       - id: detect-private-key
 
-  # Markdown documents
-  - repo: https://github.com/DavidAnson/markdownlint-cli2
-    rev: v0.23.3
-    hooks:
-      - id: markdownlint-cli2
-        args: [--config, config/markdownlint-cli2.yaml]
-
   # Commit messages
   - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
     rev: v9.27.0
@@ -51,11 +51,12 @@ repos:
           - '@commitlint/cli@21.2.4'
           - '@commitlint/config-conventional@21.2.4'
 
-  # GitHub Actions
-  - repo: https://github.com/rhysd/actionlint
-    rev: v1.7.12
+  # Markdown documents
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.23.3
     hooks:
-      - id: actionlint
+      - id: markdownlint-cli2
+        args: [--config, config/markdownlint-cli2.yaml]
 
   # Shell scripts
   - repo: https://github.com/shellcheck-py/shellcheck-py

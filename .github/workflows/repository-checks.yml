@@ -2,9 +2,11 @@ name: Repository Checks
 
 on:
   pull_request:
+    branches:
+      - main
+      - develop
+
   push:
-    # `develop` allows direct pushes, which must be checked.
-    # `main` requires PRs, which are already checked separately.
     branches:
       - develop
 
@@ -12,8 +14,8 @@ permissions:
   contents: read
 
 jobs:
-  general-checks:
-    name: General Checks
+  commit-messages:
+    name: Commit Messages
     runs-on: ubuntu-24.04
 
     steps:
@@ -23,11 +25,11 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Check tracked files
+      - name: Install prek
         uses: j178/prek-action@1382ad72dea72f9d53832f2bcb65b3e87a947204 # v3.0.1
         with:
           prek-version: '0.5.5'
-          extra-args: '--all-files'
+          install-only: true
 
       - name: Check commit messages
         shell: bash
@@ -35,3 +37,34 @@ jobs:
           BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha || github.event.after }}
         run: bash scripts/lint-commit-messages.sh "$BASE_SHA" "$HEAD_SHA"
+
+  lint-files:
+    name: Lint Files
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check tracked files
+        uses: j178/prek-action@1382ad72dea72f9d53832f2bcb65b3e87a947204 # v3.0.1
+        with:
+          prek-version: '0.5.5'
+
+  vsg:
+    name: VHDL Style (VSG)
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check VHDL style
+        uses: j178/prek-action@1382ad72dea72f9d53832f2bcb65b3e87a947204 # v3.0.1
+        with:
+          prek-version: '0.5.5'
+          extra-args: 'vsg --hook-stage manual --all-files'

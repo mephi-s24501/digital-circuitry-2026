@@ -1,6 +1,9 @@
 # General
 
 # Backups
+backups/
+bak/
+bkp/
 *.bak
 *.bkp
 

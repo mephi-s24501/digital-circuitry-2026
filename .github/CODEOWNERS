@@ -4,20 +4,22 @@
 * @mephi-s24501/onfi-tech-leads
 
 # Repository infrastructure
-/.github/ @mephi-s24501/onfi-tech-leads
-/scripts/ @mephi-s24501/onfi-tech-leads
+/.github/                @mephi-s24501/onfi-tech-leads
+/scripts/                @mephi-s24501/onfi-tech-leads
+/config/                 @mephi-s24501/onfi-tech-leads
+/.pre-commit-config.yaml @mephi-s24501/onfi-tech-leads
 
 # FPGA ONFI Controller
 
-## Integration team
+# Integration team
 /fpga-onfi-controller/integration/     @mephi-s24501/onfi-integration
 
-## Development teams
+# Development teams
 /fpga-onfi-controller/avalonst-master/ @mephi-s24501/onfi-avalonst-master
 /fpga-onfi-controller/avalonst-slave/  @mephi-s24501/onfi-avalonst-slave
 /fpga-onfi-controller/buffering/       @mephi-s24501/onfi-buffering
 /fpga-onfi-controller/command-display/ @mephi-s24501/onfi-command-display
-/fpga-onfi-controller/fsm/             @mephi-s24501/onfi-fsm
+/fpga-onfi-controller/fsm-control/     @mephi-s24501/onfi-fsm-control
 /fpga-onfi-controller/phy/             @mephi-s24501/onfi-phy
 
 # Archived files
