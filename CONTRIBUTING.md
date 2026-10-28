@@ -17,14 +17,14 @@ cd digital-circuitry-2026
 
 ```mermaid
 flowchart LR
-  TASK["&lt;team&gt;/ <br> {feature, fix, ...}/&lt;task&gt;"]
-  TEAM["&lt;team&gt;/team"]
+  TASK["#60;team#62;/{feature, fix, ...}/#60;task#62;"]
+  TEAM["#60;team#62;/team"]
   DEV["develop"]
   MAIN["main"]
 
-  TASK --> |"PR <br> [optional]"| TEAM
-  TEAM --> |"PR <br> [required]"| DEV
-  DEV  --> |"PR <br> [required] <br> [review]"| MAIN
+  TASK --> |"PR [optional]"| TEAM
+  TEAM --> |"PR [required]"| DEV
+  DEV  --> |"PR [required] <br> [review]"| MAIN
 ```
 
 <!-- markdownlint-disable no-inline-html -->
