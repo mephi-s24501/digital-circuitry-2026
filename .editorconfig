@@ -25,3 +25,6 @@ indent_size = 2
 
 [*.{qsf,sdc}]
 indent_size = 2
+
+[{Makefile,*.mk}]
+indent_style = tab
