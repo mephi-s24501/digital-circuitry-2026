@@ -18,12 +18,23 @@ tmp/
 db/
 incremental_db/
 output_files/
+greybox_tmp/
 *.done
 *.jdi
 *.pin
 *.rpt
 *.sld
+
+# Logs
 *.summary
+*.map.rpt
+*.map.summary
+*.fit.rpt
+*.fit.summary
+*.asm.rpt
+*.sta.rpt
+*.sta.summary
+*.flow.rpt
 
 # User settings
 *.qws
@@ -32,6 +43,7 @@ output_files/
 simulation/
 *.sdo
 *.vcd
+*.vwf
 
 # Programming files
 *.cdf
@@ -42,3 +54,8 @@ simulation/
 *.rbf
 *.sof
 *.svf
+*.elf
+*.map
+
+c5_pin_model_dump.txt
+*.smsg
