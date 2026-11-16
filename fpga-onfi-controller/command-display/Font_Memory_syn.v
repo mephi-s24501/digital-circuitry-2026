@@ -34,7 +34,7 @@
 //on the Quartus Prime software download page.
 
 
-//altsyncram ADDRESS_ACLR_A="NONE" CLOCK_ENABLE_INPUT_A="NORMAL" CLOCK_ENABLE_OUTPUT_A="NORMAL" DEVICE_FAMILY="Cyclone 10 LP" ENABLE_RUNTIME_MOD="NO" INIT_FILE="Font.mif" NUMWORDS_A=64 OPERATION_MODE="ROM" OUTDATA_ACLR_A="NONE" OUTDATA_REG_A="CLOCK0" WIDTH_A=108 WIDTH_BYTEENA_A=1 WIDTHAD_A=6 address_a clock0 clocken0 q_a
+//altsyncram ADDRESS_ACLR_A="NONE" CLOCK_ENABLE_INPUT_A="BYPASS" CLOCK_ENABLE_OUTPUT_A="BYPASS" DEVICE_FAMILY="Cyclone 10 LP" ENABLE_RUNTIME_MOD="NO" INIT_FILE="Font.mif" NUMWORDS_A=64 OPERATION_MODE="ROM" OUTDATA_ACLR_A="NONE" OUTDATA_REG_A="CLOCK0" WIDTH_A=108 WIDTH_BYTEENA_A=1 WIDTHAD_A=6 address_a clock0 q_a
 //VERSION_BEGIN 25.1 cbx_altera_syncram_nd_impl 2025:10:22:10:31:18:SC cbx_altsyncram 2025:10:22:10:31:18:SC cbx_cycloneii 2025:10:22:10:31:18:SC cbx_lpm_add_sub 2025:10:22:10:31:18:SC cbx_lpm_compare 2025:10:22:10:31:18:SC cbx_lpm_decode 2025:10:22:10:31:18:SC cbx_lpm_mux 2025:10:22:10:31:18:SC cbx_mgl 2025:10:22:10:38:57:SC cbx_nadder 2025:10:22:10:31:18:SC cbx_stratix 2025:10:22:10:31:18:SC cbx_stratixii 2025:10:22:10:31:18:SC cbx_stratixiii 2025:10:22:10:31:18:SC cbx_stratixv 2025:10:22:10:31:18:SC cbx_util_mgl 2025:10:22:10:31:18:SC  VERSION_END
 // synthesis VERILOG_INPUT_VERSION VERILOG_2001
 // altera message_off 10463
@@ -49,17 +49,14 @@ module  Font_Memory_altsyncram
 	( 
 	address_a,
 	clock0,
-	clocken0,
 	q_a) /* synthesis synthesis_clearbox=1 */;
 	input   [5:0]  address_a;
 	input   clock0;
-	input   clocken0;
 	output   [107:0]  q_a;
 `ifndef ALTERA_RESERVED_QIS
 // synopsys translate_off
 `endif
 	tri1   clock0;
-	tri1   clocken0;
 `ifndef ALTERA_RESERVED_QIS
 // synopsys translate_on
 `endif
@@ -177,7 +174,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_0
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_0portadataout[0:0]),
 	.portare(1'b1),
@@ -189,6 +185,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -212,9 +209,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_0.clk0_core_clock_enable = "ena0",
-		ram_block1a_0.clk0_input_clock_enable = "ena0",
-		ram_block1a_0.clk0_output_clock_enable = "ena0",
+		ram_block1a_0.clk0_core_clock_enable = "none",
+		ram_block1a_0.clk0_input_clock_enable = "none",
+		ram_block1a_0.clk0_output_clock_enable = "none",
 		ram_block1a_0.connectivity_checking = "OFF",
 		ram_block1a_0.init_file = "Font.mif",
 		ram_block1a_0.init_file_layout = "port_a",
@@ -236,7 +233,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_1
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_1portadataout[0:0]),
 	.portare(1'b1),
@@ -248,6 +244,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -271,9 +268,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_1.clk0_core_clock_enable = "ena0",
-		ram_block1a_1.clk0_input_clock_enable = "ena0",
-		ram_block1a_1.clk0_output_clock_enable = "ena0",
+		ram_block1a_1.clk0_core_clock_enable = "none",
+		ram_block1a_1.clk0_input_clock_enable = "none",
+		ram_block1a_1.clk0_output_clock_enable = "none",
 		ram_block1a_1.connectivity_checking = "OFF",
 		ram_block1a_1.init_file = "Font.mif",
 		ram_block1a_1.init_file_layout = "port_a",
@@ -295,7 +292,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_2
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_2portadataout[0:0]),
 	.portare(1'b1),
@@ -307,6 +303,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -330,9 +327,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_2.clk0_core_clock_enable = "ena0",
-		ram_block1a_2.clk0_input_clock_enable = "ena0",
-		ram_block1a_2.clk0_output_clock_enable = "ena0",
+		ram_block1a_2.clk0_core_clock_enable = "none",
+		ram_block1a_2.clk0_input_clock_enable = "none",
+		ram_block1a_2.clk0_output_clock_enable = "none",
 		ram_block1a_2.connectivity_checking = "OFF",
 		ram_block1a_2.init_file = "Font.mif",
 		ram_block1a_2.init_file_layout = "port_a",
@@ -354,7 +351,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_3
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_3portadataout[0:0]),
 	.portare(1'b1),
@@ -366,6 +362,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -389,9 +386,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_3.clk0_core_clock_enable = "ena0",
-		ram_block1a_3.clk0_input_clock_enable = "ena0",
-		ram_block1a_3.clk0_output_clock_enable = "ena0",
+		ram_block1a_3.clk0_core_clock_enable = "none",
+		ram_block1a_3.clk0_input_clock_enable = "none",
+		ram_block1a_3.clk0_output_clock_enable = "none",
 		ram_block1a_3.connectivity_checking = "OFF",
 		ram_block1a_3.init_file = "Font.mif",
 		ram_block1a_3.init_file_layout = "port_a",
@@ -413,7 +410,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_4
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_4portadataout[0:0]),
 	.portare(1'b1),
@@ -425,6 +421,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -448,9 +445,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_4.clk0_core_clock_enable = "ena0",
-		ram_block1a_4.clk0_input_clock_enable = "ena0",
-		ram_block1a_4.clk0_output_clock_enable = "ena0",
+		ram_block1a_4.clk0_core_clock_enable = "none",
+		ram_block1a_4.clk0_input_clock_enable = "none",
+		ram_block1a_4.clk0_output_clock_enable = "none",
 		ram_block1a_4.connectivity_checking = "OFF",
 		ram_block1a_4.init_file = "Font.mif",
 		ram_block1a_4.init_file_layout = "port_a",
@@ -472,7 +469,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_5
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_5portadataout[0:0]),
 	.portare(1'b1),
@@ -484,6 +480,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -507,9 +504,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_5.clk0_core_clock_enable = "ena0",
-		ram_block1a_5.clk0_input_clock_enable = "ena0",
-		ram_block1a_5.clk0_output_clock_enable = "ena0",
+		ram_block1a_5.clk0_core_clock_enable = "none",
+		ram_block1a_5.clk0_input_clock_enable = "none",
+		ram_block1a_5.clk0_output_clock_enable = "none",
 		ram_block1a_5.connectivity_checking = "OFF",
 		ram_block1a_5.init_file = "Font.mif",
 		ram_block1a_5.init_file_layout = "port_a",
@@ -531,7 +528,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_6
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_6portadataout[0:0]),
 	.portare(1'b1),
@@ -543,6 +539,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -566,9 +563,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_6.clk0_core_clock_enable = "ena0",
-		ram_block1a_6.clk0_input_clock_enable = "ena0",
-		ram_block1a_6.clk0_output_clock_enable = "ena0",
+		ram_block1a_6.clk0_core_clock_enable = "none",
+		ram_block1a_6.clk0_input_clock_enable = "none",
+		ram_block1a_6.clk0_output_clock_enable = "none",
 		ram_block1a_6.connectivity_checking = "OFF",
 		ram_block1a_6.init_file = "Font.mif",
 		ram_block1a_6.init_file_layout = "port_a",
@@ -590,7 +587,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_7
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_7portadataout[0:0]),
 	.portare(1'b1),
@@ -602,6 +598,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -625,9 +622,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_7.clk0_core_clock_enable = "ena0",
-		ram_block1a_7.clk0_input_clock_enable = "ena0",
-		ram_block1a_7.clk0_output_clock_enable = "ena0",
+		ram_block1a_7.clk0_core_clock_enable = "none",
+		ram_block1a_7.clk0_input_clock_enable = "none",
+		ram_block1a_7.clk0_output_clock_enable = "none",
 		ram_block1a_7.connectivity_checking = "OFF",
 		ram_block1a_7.init_file = "Font.mif",
 		ram_block1a_7.init_file_layout = "port_a",
@@ -649,7 +646,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_8
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_8portadataout[0:0]),
 	.portare(1'b1),
@@ -661,6 +657,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -684,9 +681,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_8.clk0_core_clock_enable = "ena0",
-		ram_block1a_8.clk0_input_clock_enable = "ena0",
-		ram_block1a_8.clk0_output_clock_enable = "ena0",
+		ram_block1a_8.clk0_core_clock_enable = "none",
+		ram_block1a_8.clk0_input_clock_enable = "none",
+		ram_block1a_8.clk0_output_clock_enable = "none",
 		ram_block1a_8.connectivity_checking = "OFF",
 		ram_block1a_8.init_file = "Font.mif",
 		ram_block1a_8.init_file_layout = "port_a",
@@ -708,7 +705,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_9
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_9portadataout[0:0]),
 	.portare(1'b1),
@@ -720,6 +716,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -743,9 +740,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_9.clk0_core_clock_enable = "ena0",
-		ram_block1a_9.clk0_input_clock_enable = "ena0",
-		ram_block1a_9.clk0_output_clock_enable = "ena0",
+		ram_block1a_9.clk0_core_clock_enable = "none",
+		ram_block1a_9.clk0_input_clock_enable = "none",
+		ram_block1a_9.clk0_output_clock_enable = "none",
 		ram_block1a_9.connectivity_checking = "OFF",
 		ram_block1a_9.init_file = "Font.mif",
 		ram_block1a_9.init_file_layout = "port_a",
@@ -767,7 +764,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_10
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_10portadataout[0:0]),
 	.portare(1'b1),
@@ -779,6 +775,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -802,9 +799,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_10.clk0_core_clock_enable = "ena0",
-		ram_block1a_10.clk0_input_clock_enable = "ena0",
-		ram_block1a_10.clk0_output_clock_enable = "ena0",
+		ram_block1a_10.clk0_core_clock_enable = "none",
+		ram_block1a_10.clk0_input_clock_enable = "none",
+		ram_block1a_10.clk0_output_clock_enable = "none",
 		ram_block1a_10.connectivity_checking = "OFF",
 		ram_block1a_10.init_file = "Font.mif",
 		ram_block1a_10.init_file_layout = "port_a",
@@ -826,7 +823,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_11
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_11portadataout[0:0]),
 	.portare(1'b1),
@@ -838,6 +834,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -861,14 +858,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_11.clk0_core_clock_enable = "ena0",
-		ram_block1a_11.clk0_input_clock_enable = "ena0",
-		ram_block1a_11.clk0_output_clock_enable = "ena0",
+		ram_block1a_11.clk0_core_clock_enable = "none",
+		ram_block1a_11.clk0_input_clock_enable = "none",
+		ram_block1a_11.clk0_output_clock_enable = "none",
 		ram_block1a_11.connectivity_checking = "OFF",
 		ram_block1a_11.init_file = "Font.mif",
 		ram_block1a_11.init_file_layout = "port_a",
 		ram_block1a_11.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_11.mem_init0 = 64'h0000000800000000,
+		ram_block1a_11.mem_init0 = 64'h0000001000000000,
 		ram_block1a_11.operation_mode = "rom",
 		ram_block1a_11.port_a_address_clear = "none",
 		ram_block1a_11.port_a_address_width = 6,
@@ -885,7 +882,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_12
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_12portadataout[0:0]),
 	.portare(1'b1),
@@ -897,6 +893,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -920,9 +917,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_12.clk0_core_clock_enable = "ena0",
-		ram_block1a_12.clk0_input_clock_enable = "ena0",
-		ram_block1a_12.clk0_output_clock_enable = "ena0",
+		ram_block1a_12.clk0_core_clock_enable = "none",
+		ram_block1a_12.clk0_input_clock_enable = "none",
+		ram_block1a_12.clk0_output_clock_enable = "none",
 		ram_block1a_12.connectivity_checking = "OFF",
 		ram_block1a_12.init_file = "Font.mif",
 		ram_block1a_12.init_file_layout = "port_a",
@@ -944,7 +941,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_13
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_13portadataout[0:0]),
 	.portare(1'b1),
@@ -956,6 +952,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -979,14 +976,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_13.clk0_core_clock_enable = "ena0",
-		ram_block1a_13.clk0_input_clock_enable = "ena0",
-		ram_block1a_13.clk0_output_clock_enable = "ena0",
+		ram_block1a_13.clk0_core_clock_enable = "none",
+		ram_block1a_13.clk0_input_clock_enable = "none",
+		ram_block1a_13.clk0_output_clock_enable = "none",
 		ram_block1a_13.connectivity_checking = "OFF",
 		ram_block1a_13.init_file = "Font.mif",
 		ram_block1a_13.init_file_layout = "port_a",
 		ram_block1a_13.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_13.mem_init0 = 64'h0000000400000000,
+		ram_block1a_13.mem_init0 = 64'h0000000800000000,
 		ram_block1a_13.operation_mode = "rom",
 		ram_block1a_13.port_a_address_clear = "none",
 		ram_block1a_13.port_a_address_width = 6,
@@ -1003,7 +1000,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_14
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_14portadataout[0:0]),
 	.portare(1'b1),
@@ -1015,6 +1011,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -1038,9 +1035,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_14.clk0_core_clock_enable = "ena0",
-		ram_block1a_14.clk0_input_clock_enable = "ena0",
-		ram_block1a_14.clk0_output_clock_enable = "ena0",
+		ram_block1a_14.clk0_core_clock_enable = "none",
+		ram_block1a_14.clk0_input_clock_enable = "none",
+		ram_block1a_14.clk0_output_clock_enable = "none",
 		ram_block1a_14.connectivity_checking = "OFF",
 		ram_block1a_14.init_file = "Font.mif",
 		ram_block1a_14.init_file_layout = "port_a",
@@ -1062,7 +1059,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_15
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_15portadataout[0:0]),
 	.portare(1'b1),
@@ -1074,6 +1070,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -1097,9 +1094,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_15.clk0_core_clock_enable = "ena0",
-		ram_block1a_15.clk0_input_clock_enable = "ena0",
-		ram_block1a_15.clk0_output_clock_enable = "ena0",
+		ram_block1a_15.clk0_core_clock_enable = "none",
+		ram_block1a_15.clk0_input_clock_enable = "none",
+		ram_block1a_15.clk0_output_clock_enable = "none",
 		ram_block1a_15.connectivity_checking = "OFF",
 		ram_block1a_15.init_file = "Font.mif",
 		ram_block1a_15.init_file_layout = "port_a",
@@ -1121,7 +1118,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_16
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_16portadataout[0:0]),
 	.portare(1'b1),
@@ -1133,6 +1129,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -1156,9 +1153,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_16.clk0_core_clock_enable = "ena0",
-		ram_block1a_16.clk0_input_clock_enable = "ena0",
-		ram_block1a_16.clk0_output_clock_enable = "ena0",
+		ram_block1a_16.clk0_core_clock_enable = "none",
+		ram_block1a_16.clk0_input_clock_enable = "none",
+		ram_block1a_16.clk0_output_clock_enable = "none",
 		ram_block1a_16.connectivity_checking = "OFF",
 		ram_block1a_16.init_file = "Font.mif",
 		ram_block1a_16.init_file_layout = "port_a",
@@ -1180,7 +1177,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_17
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_17portadataout[0:0]),
 	.portare(1'b1),
@@ -1192,6 +1188,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -1215,9 +1212,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_17.clk0_core_clock_enable = "ena0",
-		ram_block1a_17.clk0_input_clock_enable = "ena0",
-		ram_block1a_17.clk0_output_clock_enable = "ena0",
+		ram_block1a_17.clk0_core_clock_enable = "none",
+		ram_block1a_17.clk0_input_clock_enable = "none",
+		ram_block1a_17.clk0_output_clock_enable = "none",
 		ram_block1a_17.connectivity_checking = "OFF",
 		ram_block1a_17.init_file = "Font.mif",
 		ram_block1a_17.init_file_layout = "port_a",
@@ -1239,7 +1236,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_18
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_18portadataout[0:0]),
 	.portare(1'b1),
@@ -1251,6 +1247,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -1274,9 +1271,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_18.clk0_core_clock_enable = "ena0",
-		ram_block1a_18.clk0_input_clock_enable = "ena0",
-		ram_block1a_18.clk0_output_clock_enable = "ena0",
+		ram_block1a_18.clk0_core_clock_enable = "none",
+		ram_block1a_18.clk0_input_clock_enable = "none",
+		ram_block1a_18.clk0_output_clock_enable = "none",
 		ram_block1a_18.connectivity_checking = "OFF",
 		ram_block1a_18.init_file = "Font.mif",
 		ram_block1a_18.init_file_layout = "port_a",
@@ -1298,7 +1295,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_19
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_19portadataout[0:0]),
 	.portare(1'b1),
@@ -1310,6 +1306,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -1333,14 +1330,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_19.clk0_core_clock_enable = "ena0",
-		ram_block1a_19.clk0_input_clock_enable = "ena0",
-		ram_block1a_19.clk0_output_clock_enable = "ena0",
+		ram_block1a_19.clk0_core_clock_enable = "none",
+		ram_block1a_19.clk0_input_clock_enable = "none",
+		ram_block1a_19.clk0_output_clock_enable = "none",
 		ram_block1a_19.connectivity_checking = "OFF",
 		ram_block1a_19.init_file = "Font.mif",
 		ram_block1a_19.init_file_layout = "port_a",
 		ram_block1a_19.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_19.mem_init0 = 64'h0B000008A3F836B0,
+		ram_block1a_19.mem_init0 = 64'h1600001147F06D60,
 		ram_block1a_19.operation_mode = "rom",
 		ram_block1a_19.port_a_address_clear = "none",
 		ram_block1a_19.port_a_address_width = 6,
@@ -1357,7 +1354,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_20
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_20portadataout[0:0]),
 	.portare(1'b1),
@@ -1369,6 +1365,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -1392,14 +1389,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_20.clk0_core_clock_enable = "ena0",
-		ram_block1a_20.clk0_input_clock_enable = "ena0",
-		ram_block1a_20.clk0_output_clock_enable = "ena0",
+		ram_block1a_20.clk0_core_clock_enable = "none",
+		ram_block1a_20.clk0_input_clock_enable = "none",
+		ram_block1a_20.clk0_output_clock_enable = "none",
 		ram_block1a_20.connectivity_checking = "OFF",
 		ram_block1a_20.init_file = "Font.mif",
 		ram_block1a_20.init_file_layout = "port_a",
 		ram_block1a_20.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_20.mem_init0 = 64'h3ED00000820FC377,
+		ram_block1a_20.mem_init0 = 64'h7DA00001041F86EE,
 		ram_block1a_20.operation_mode = "rom",
 		ram_block1a_20.port_a_address_clear = "none",
 		ram_block1a_20.port_a_address_width = 6,
@@ -1416,7 +1413,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_21
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_21portadataout[0:0]),
 	.portare(1'b1),
@@ -1428,6 +1424,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -1451,14 +1448,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_21.clk0_core_clock_enable = "ena0",
-		ram_block1a_21.clk0_input_clock_enable = "ena0",
-		ram_block1a_21.clk0_output_clock_enable = "ena0",
+		ram_block1a_21.clk0_core_clock_enable = "none",
+		ram_block1a_21.clk0_input_clock_enable = "none",
+		ram_block1a_21.clk0_output_clock_enable = "none",
 		ram_block1a_21.connectivity_checking = "OFF",
 		ram_block1a_21.init_file = "Font.mif",
 		ram_block1a_21.init_file_layout = "port_a",
 		ram_block1a_21.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_21.mem_init0 = 64'h3EF02024020FC37F,
+		ram_block1a_21.mem_init0 = 64'h7DE04048041F86FE,
 		ram_block1a_21.operation_mode = "rom",
 		ram_block1a_21.port_a_address_clear = "none",
 		ram_block1a_21.port_a_address_width = 6,
@@ -1475,7 +1472,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_22
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_22portadataout[0:0]),
 	.portare(1'b1),
@@ -1487,6 +1483,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -1510,14 +1507,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_22.clk0_core_clock_enable = "ena0",
-		ram_block1a_22.clk0_input_clock_enable = "ena0",
-		ram_block1a_22.clk0_output_clock_enable = "ena0",
+		ram_block1a_22.clk0_core_clock_enable = "none",
+		ram_block1a_22.clk0_input_clock_enable = "none",
+		ram_block1a_22.clk0_output_clock_enable = "none",
 		ram_block1a_22.connectivity_checking = "OFF",
 		ram_block1a_22.init_file = "Font.mif",
 		ram_block1a_22.init_file_layout = "port_a",
 		ram_block1a_22.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_22.mem_init0 = 64'h3ED00030020FC17F,
+		ram_block1a_22.mem_init0 = 64'h7DA00060041F82FE,
 		ram_block1a_22.operation_mode = "rom",
 		ram_block1a_22.port_a_address_clear = "none",
 		ram_block1a_22.port_a_address_width = 6,
@@ -1534,7 +1531,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_23
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_23portadataout[0:0]),
 	.portare(1'b1),
@@ -1546,6 +1542,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -1569,14 +1566,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_23.clk0_core_clock_enable = "ena0",
-		ram_block1a_23.clk0_input_clock_enable = "ena0",
-		ram_block1a_23.clk0_output_clock_enable = "ena0",
+		ram_block1a_23.clk0_core_clock_enable = "none",
+		ram_block1a_23.clk0_input_clock_enable = "none",
+		ram_block1a_23.clk0_output_clock_enable = "none",
 		ram_block1a_23.connectivity_checking = "OFF",
 		ram_block1a_23.init_file = "Font.mif",
 		ram_block1a_23.init_file_layout = "port_a",
 		ram_block1a_23.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_23.mem_init0 = 64'h0A0000020BFABCBA,
+		ram_block1a_23.mem_init0 = 64'h1400000417F57974,
 		ram_block1a_23.operation_mode = "rom",
 		ram_block1a_23.port_a_address_clear = "none",
 		ram_block1a_23.port_a_address_width = 6,
@@ -1593,7 +1590,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_24
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_24portadataout[0:0]),
 	.portare(1'b1),
@@ -1605,6 +1601,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -1628,9 +1625,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_24.clk0_core_clock_enable = "ena0",
-		ram_block1a_24.clk0_input_clock_enable = "ena0",
-		ram_block1a_24.clk0_output_clock_enable = "ena0",
+		ram_block1a_24.clk0_core_clock_enable = "none",
+		ram_block1a_24.clk0_input_clock_enable = "none",
+		ram_block1a_24.clk0_output_clock_enable = "none",
 		ram_block1a_24.connectivity_checking = "OFF",
 		ram_block1a_24.init_file = "Font.mif",
 		ram_block1a_24.init_file_layout = "port_a",
@@ -1652,7 +1649,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_25
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_25portadataout[0:0]),
 	.portare(1'b1),
@@ -1664,6 +1660,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -1687,9 +1684,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_25.clk0_core_clock_enable = "ena0",
-		ram_block1a_25.clk0_input_clock_enable = "ena0",
-		ram_block1a_25.clk0_output_clock_enable = "ena0",
+		ram_block1a_25.clk0_core_clock_enable = "none",
+		ram_block1a_25.clk0_input_clock_enable = "none",
+		ram_block1a_25.clk0_output_clock_enable = "none",
 		ram_block1a_25.connectivity_checking = "OFF",
 		ram_block1a_25.init_file = "Font.mif",
 		ram_block1a_25.init_file_layout = "port_a",
@@ -1711,7 +1708,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_26
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_26portadataout[0:0]),
 	.portare(1'b1),
@@ -1723,6 +1719,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -1746,9 +1743,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_26.clk0_core_clock_enable = "ena0",
-		ram_block1a_26.clk0_input_clock_enable = "ena0",
-		ram_block1a_26.clk0_output_clock_enable = "ena0",
+		ram_block1a_26.clk0_core_clock_enable = "none",
+		ram_block1a_26.clk0_input_clock_enable = "none",
+		ram_block1a_26.clk0_output_clock_enable = "none",
 		ram_block1a_26.connectivity_checking = "OFF",
 		ram_block1a_26.init_file = "Font.mif",
 		ram_block1a_26.init_file_layout = "port_a",
@@ -1770,7 +1767,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_27
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_27portadataout[0:0]),
 	.portare(1'b1),
@@ -1782,6 +1778,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -1805,14 +1802,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_27.clk0_core_clock_enable = "ena0",
-		ram_block1a_27.clk0_input_clock_enable = "ena0",
-		ram_block1a_27.clk0_output_clock_enable = "ena0",
+		ram_block1a_27.clk0_core_clock_enable = "none",
+		ram_block1a_27.clk0_input_clock_enable = "none",
+		ram_block1a_27.clk0_output_clock_enable = "none",
 		ram_block1a_27.connectivity_checking = "OFF",
 		ram_block1a_27.init_file = "Font.mif",
 		ram_block1a_27.init_file_layout = "port_a",
 		ram_block1a_27.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_27.mem_init0 = 64'h39D0000023F7F0C7,
+		ram_block1a_27.mem_init0 = 64'h73A0000047EFE18E,
 		ram_block1a_27.operation_mode = "rom",
 		ram_block1a_27.port_a_address_clear = "none",
 		ram_block1a_27.port_a_address_width = 6,
@@ -1829,7 +1826,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_28
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_28portadataout[0:0]),
 	.portare(1'b1),
@@ -1841,6 +1837,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -1864,14 +1861,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_28.clk0_core_clock_enable = "ena0",
-		ram_block1a_28.clk0_input_clock_enable = "ena0",
-		ram_block1a_28.clk0_output_clock_enable = "ena0",
+		ram_block1a_28.clk0_core_clock_enable = "none",
+		ram_block1a_28.clk0_input_clock_enable = "none",
+		ram_block1a_28.clk0_output_clock_enable = "none",
 		ram_block1a_28.connectivity_checking = "OFF",
 		ram_block1a_28.init_file = "Font.mif",
 		ram_block1a_28.init_file_layout = "port_a",
 		ram_block1a_28.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_28.mem_init0 = 64'h0100000000001608,
+		ram_block1a_28.mem_init0 = 64'h0200000000002C10,
 		ram_block1a_28.operation_mode = "rom",
 		ram_block1a_28.port_a_address_clear = "none",
 		ram_block1a_28.port_a_address_width = 6,
@@ -1888,7 +1885,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_29
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_29portadataout[0:0]),
 	.portare(1'b1),
@@ -1900,6 +1896,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -1923,14 +1920,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_29.clk0_core_clock_enable = "ena0",
-		ram_block1a_29.clk0_input_clock_enable = "ena0",
-		ram_block1a_29.clk0_output_clock_enable = "ena0",
+		ram_block1a_29.clk0_core_clock_enable = "none",
+		ram_block1a_29.clk0_input_clock_enable = "none",
+		ram_block1a_29.clk0_output_clock_enable = "none",
 		ram_block1a_29.connectivity_checking = "OFF",
 		ram_block1a_29.init_file = "Font.mif",
 		ram_block1a_29.init_file_layout = "port_a",
 		ram_block1a_29.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_29.mem_init0 = 64'h0020202080080100,
+		ram_block1a_29.mem_init0 = 64'h0040404100100200,
 		ram_block1a_29.operation_mode = "rom",
 		ram_block1a_29.port_a_address_clear = "none",
 		ram_block1a_29.port_a_address_width = 6,
@@ -1947,7 +1944,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_30
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_30portadataout[0:0]),
 	.portare(1'b1),
@@ -1959,6 +1955,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -1982,14 +1979,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_30.clk0_core_clock_enable = "ena0",
-		ram_block1a_30.clk0_input_clock_enable = "ena0",
-		ram_block1a_30.clk0_output_clock_enable = "ena0",
+		ram_block1a_30.clk0_core_clock_enable = "none",
+		ram_block1a_30.clk0_input_clock_enable = "none",
+		ram_block1a_30.clk0_output_clock_enable = "none",
 		ram_block1a_30.connectivity_checking = "OFF",
 		ram_block1a_30.init_file = "Font.mif",
 		ram_block1a_30.init_file_layout = "port_a",
 		ram_block1a_30.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_30.mem_init0 = 64'h0020001000001000,
+		ram_block1a_30.mem_init0 = 64'h0040002000002000,
 		ram_block1a_30.operation_mode = "rom",
 		ram_block1a_30.port_a_address_clear = "none",
 		ram_block1a_30.port_a_address_width = 6,
@@ -2006,7 +2003,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_31
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_31portadataout[0:0]),
 	.portare(1'b1),
@@ -2018,6 +2014,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -2041,14 +2038,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_31.clk0_core_clock_enable = "ena0",
-		ram_block1a_31.clk0_input_clock_enable = "ena0",
-		ram_block1a_31.clk0_output_clock_enable = "ena0",
+		ram_block1a_31.clk0_core_clock_enable = "none",
+		ram_block1a_31.clk0_input_clock_enable = "none",
+		ram_block1a_31.clk0_output_clock_enable = "none",
 		ram_block1a_31.connectivity_checking = "OFF",
 		ram_block1a_31.init_file = "Font.mif",
 		ram_block1a_31.init_file_layout = "port_a",
 		ram_block1a_31.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_31.mem_init0 = 64'h36D0000209F7FCFF,
+		ram_block1a_31.mem_init0 = 64'h6DA0000413EFF9FE,
 		ram_block1a_31.operation_mode = "rom",
 		ram_block1a_31.port_a_address_clear = "none",
 		ram_block1a_31.port_a_address_width = 6,
@@ -2065,7 +2062,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_32
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_32portadataout[0:0]),
 	.portare(1'b1),
@@ -2077,6 +2073,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -2100,9 +2097,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_32.clk0_core_clock_enable = "ena0",
-		ram_block1a_32.clk0_input_clock_enable = "ena0",
-		ram_block1a_32.clk0_output_clock_enable = "ena0",
+		ram_block1a_32.clk0_core_clock_enable = "none",
+		ram_block1a_32.clk0_input_clock_enable = "none",
+		ram_block1a_32.clk0_output_clock_enable = "none",
 		ram_block1a_32.connectivity_checking = "OFF",
 		ram_block1a_32.init_file = "Font.mif",
 		ram_block1a_32.init_file_layout = "port_a",
@@ -2124,7 +2121,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_33
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_33portadataout[0:0]),
 	.portare(1'b1),
@@ -2136,6 +2132,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -2159,9 +2156,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_33.clk0_core_clock_enable = "ena0",
-		ram_block1a_33.clk0_input_clock_enable = "ena0",
-		ram_block1a_33.clk0_output_clock_enable = "ena0",
+		ram_block1a_33.clk0_core_clock_enable = "none",
+		ram_block1a_33.clk0_input_clock_enable = "none",
+		ram_block1a_33.clk0_output_clock_enable = "none",
 		ram_block1a_33.connectivity_checking = "OFF",
 		ram_block1a_33.init_file = "Font.mif",
 		ram_block1a_33.init_file_layout = "port_a",
@@ -2183,7 +2180,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_34
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_34portadataout[0:0]),
 	.portare(1'b1),
@@ -2195,6 +2191,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -2218,9 +2215,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_34.clk0_core_clock_enable = "ena0",
-		ram_block1a_34.clk0_input_clock_enable = "ena0",
-		ram_block1a_34.clk0_output_clock_enable = "ena0",
+		ram_block1a_34.clk0_core_clock_enable = "none",
+		ram_block1a_34.clk0_input_clock_enable = "none",
+		ram_block1a_34.clk0_output_clock_enable = "none",
 		ram_block1a_34.connectivity_checking = "OFF",
 		ram_block1a_34.init_file = "Font.mif",
 		ram_block1a_34.init_file_layout = "port_a",
@@ -2242,7 +2239,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_35
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_35portadataout[0:0]),
 	.portare(1'b1),
@@ -2254,6 +2250,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -2277,14 +2274,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_35.clk0_core_clock_enable = "ena0",
-		ram_block1a_35.clk0_input_clock_enable = "ena0",
-		ram_block1a_35.clk0_output_clock_enable = "ena0",
+		ram_block1a_35.clk0_core_clock_enable = "none",
+		ram_block1a_35.clk0_input_clock_enable = "none",
+		ram_block1a_35.clk0_output_clock_enable = "none",
 		ram_block1a_35.connectivity_checking = "OFF",
 		ram_block1a_35.init_file = "Font.mif",
 		ram_block1a_35.init_file_layout = "port_a",
 		ram_block1a_35.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_35.mem_init0 = 64'h39DFDC192073F08B,
+		ram_block1a_35.mem_init0 = 64'h73BFB83240E7E116,
 		ram_block1a_35.operation_mode = "rom",
 		ram_block1a_35.port_a_address_clear = "none",
 		ram_block1a_35.port_a_address_width = 6,
@@ -2301,7 +2298,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_36
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_36portadataout[0:0]),
 	.portare(1'b1),
@@ -2313,6 +2309,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -2336,14 +2333,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_36.clk0_core_clock_enable = "ena0",
-		ram_block1a_36.clk0_input_clock_enable = "ena0",
-		ram_block1a_36.clk0_output_clock_enable = "ena0",
+		ram_block1a_36.clk0_core_clock_enable = "none",
+		ram_block1a_36.clk0_input_clock_enable = "none",
+		ram_block1a_36.clk0_output_clock_enable = "none",
 		ram_block1a_36.connectivity_checking = "OFF",
 		ram_block1a_36.init_file = "Font.mif",
 		ram_block1a_36.init_file_layout = "port_a",
 		ram_block1a_36.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_36.mem_init0 = 64'h00183FCBFF800200,
+		ram_block1a_36.mem_init0 = 64'h00307F97FF000400,
 		ram_block1a_36.operation_mode = "rom",
 		ram_block1a_36.port_a_address_clear = "none",
 		ram_block1a_36.port_a_address_width = 6,
@@ -2360,7 +2357,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_37
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_37portadataout[0:0]),
 	.portare(1'b1),
@@ -2372,6 +2368,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -2395,14 +2392,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_37.clk0_core_clock_enable = "ena0",
-		ram_block1a_37.clk0_input_clock_enable = "ena0",
-		ram_block1a_37.clk0_output_clock_enable = "ena0",
+		ram_block1a_37.clk0_core_clock_enable = "none",
+		ram_block1a_37.clk0_input_clock_enable = "none",
+		ram_block1a_37.clk0_output_clock_enable = "none",
 		ram_block1a_37.connectivity_checking = "OFF",
 		ram_block1a_37.init_file = "Font.mif",
 		ram_block1a_37.init_file_layout = "port_a",
 		ram_block1a_37.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_37.mem_init0 = 64'h01283FE7FC081500,
+		ram_block1a_37.mem_init0 = 64'h02507FCFF8102A00,
 		ram_block1a_37.operation_mode = "rom",
 		ram_block1a_37.port_a_address_clear = "none",
 		ram_block1a_37.port_a_address_width = 6,
@@ -2419,7 +2416,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_38
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_38portadataout[0:0]),
 	.portare(1'b1),
@@ -2431,6 +2427,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -2454,14 +2451,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_38.clk0_core_clock_enable = "ena0",
-		ram_block1a_38.clk0_input_clock_enable = "ena0",
-		ram_block1a_38.clk0_output_clock_enable = "ena0",
+		ram_block1a_38.clk0_core_clock_enable = "none",
+		ram_block1a_38.clk0_input_clock_enable = "none",
+		ram_block1a_38.clk0_output_clock_enable = "none",
 		ram_block1a_38.connectivity_checking = "OFF",
 		ram_block1a_38.init_file = "Font.mif",
 		ram_block1a_38.init_file_layout = "port_a",
 		ram_block1a_38.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_38.mem_init0 = 64'h000837D7FD802000,
+		ram_block1a_38.mem_init0 = 64'h00106FAFFB004000,
 		ram_block1a_38.operation_mode = "rom",
 		ram_block1a_38.port_a_address_clear = "none",
 		ram_block1a_38.port_a_address_width = 6,
@@ -2478,7 +2475,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_39
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_39portadataout[0:0]),
 	.portare(1'b1),
@@ -2490,6 +2486,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -2513,14 +2510,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_39.clk0_core_clock_enable = "ena0",
-		ram_block1a_39.clk0_input_clock_enable = "ena0",
-		ram_block1a_39.clk0_output_clock_enable = "ena0",
+		ram_block1a_39.clk0_core_clock_enable = "none",
+		ram_block1a_39.clk0_input_clock_enable = "none",
+		ram_block1a_39.clk0_output_clock_enable = "none",
 		ram_block1a_39.connectivity_checking = "OFF",
 		ram_block1a_39.init_file = "Font.mif",
 		ram_block1a_39.init_file_layout = "port_a",
 		ram_block1a_39.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_39.mem_init0 = 64'h365FCAC20877FCFF,
+		ram_block1a_39.mem_init0 = 64'h6CBF958410EFF9FE,
 		ram_block1a_39.operation_mode = "rom",
 		ram_block1a_39.port_a_address_clear = "none",
 		ram_block1a_39.port_a_address_width = 6,
@@ -2537,7 +2534,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_40
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_40portadataout[0:0]),
 	.portare(1'b1),
@@ -2549,6 +2545,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -2572,9 +2569,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_40.clk0_core_clock_enable = "ena0",
-		ram_block1a_40.clk0_input_clock_enable = "ena0",
-		ram_block1a_40.clk0_output_clock_enable = "ena0",
+		ram_block1a_40.clk0_core_clock_enable = "none",
+		ram_block1a_40.clk0_input_clock_enable = "none",
+		ram_block1a_40.clk0_output_clock_enable = "none",
 		ram_block1a_40.connectivity_checking = "OFF",
 		ram_block1a_40.init_file = "Font.mif",
 		ram_block1a_40.init_file_layout = "port_a",
@@ -2596,7 +2593,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_41
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_41portadataout[0:0]),
 	.portare(1'b1),
@@ -2608,6 +2604,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -2631,9 +2628,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_41.clk0_core_clock_enable = "ena0",
-		ram_block1a_41.clk0_input_clock_enable = "ena0",
-		ram_block1a_41.clk0_output_clock_enable = "ena0",
+		ram_block1a_41.clk0_core_clock_enable = "none",
+		ram_block1a_41.clk0_input_clock_enable = "none",
+		ram_block1a_41.clk0_output_clock_enable = "none",
 		ram_block1a_41.connectivity_checking = "OFF",
 		ram_block1a_41.init_file = "Font.mif",
 		ram_block1a_41.init_file_layout = "port_a",
@@ -2655,7 +2652,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_42
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_42portadataout[0:0]),
 	.portare(1'b1),
@@ -2667,6 +2663,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -2690,9 +2687,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_42.clk0_core_clock_enable = "ena0",
-		ram_block1a_42.clk0_input_clock_enable = "ena0",
-		ram_block1a_42.clk0_output_clock_enable = "ena0",
+		ram_block1a_42.clk0_core_clock_enable = "none",
+		ram_block1a_42.clk0_input_clock_enable = "none",
+		ram_block1a_42.clk0_output_clock_enable = "none",
 		ram_block1a_42.connectivity_checking = "OFF",
 		ram_block1a_42.init_file = "Font.mif",
 		ram_block1a_42.init_file_layout = "port_a",
@@ -2714,7 +2711,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_43
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_43portadataout[0:0]),
 	.portare(1'b1),
@@ -2726,6 +2722,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -2749,14 +2746,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_43.clk0_core_clock_enable = "ena0",
-		ram_block1a_43.clk0_input_clock_enable = "ena0",
-		ram_block1a_43.clk0_output_clock_enable = "ena0",
+		ram_block1a_43.clk0_core_clock_enable = "none",
+		ram_block1a_43.clk0_input_clock_enable = "none",
+		ram_block1a_43.clk0_output_clock_enable = "none",
 		ram_block1a_43.connectivity_checking = "OFF",
 		ram_block1a_43.init_file = "Font.mif",
 		ram_block1a_43.init_file_layout = "port_a",
 		ram_block1a_43.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_43.mem_init0 = 64'h2155C7CB7C53F089,
+		ram_block1a_43.mem_init0 = 64'h42AB8F96F8A7E112,
 		ram_block1a_43.operation_mode = "rom",
 		ram_block1a_43.port_a_address_clear = "none",
 		ram_block1a_43.port_a_address_width = 6,
@@ -2773,7 +2770,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_44
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_44portadataout[0:0]),
 	.portare(1'b1),
@@ -2785,6 +2781,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -2808,14 +2805,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_44.clk0_core_clock_enable = "ena0",
-		ram_block1a_44.clk0_input_clock_enable = "ena0",
-		ram_block1a_44.clk0_output_clock_enable = "ena0",
+		ram_block1a_44.clk0_core_clock_enable = "none",
+		ram_block1a_44.clk0_input_clock_enable = "none",
+		ram_block1a_44.clk0_output_clock_enable = "none",
 		ram_block1a_44.connectivity_checking = "OFF",
 		ram_block1a_44.init_file = "Font.mif",
 		ram_block1a_44.init_file_layout = "port_a",
 		ram_block1a_44.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_44.mem_init0 = 64'h1E8A0010012402B2,
+		ram_block1a_44.mem_init0 = 64'h3D14002002480564,
 		ram_block1a_44.operation_mode = "rom",
 		ram_block1a_44.port_a_address_clear = "none",
 		ram_block1a_44.port_a_address_width = 6,
@@ -2832,7 +2829,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_45
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_45portadataout[0:0]),
 	.portare(1'b1),
@@ -2844,6 +2840,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -2867,14 +2864,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_45.clk0_core_clock_enable = "ena0",
-		ram_block1a_45.clk0_input_clock_enable = "ena0",
-		ram_block1a_45.clk0_output_clock_enable = "ena0",
+		ram_block1a_45.clk0_core_clock_enable = "none",
+		ram_block1a_45.clk0_input_clock_enable = "none",
+		ram_block1a_45.clk0_output_clock_enable = "none",
 		ram_block1a_45.connectivity_checking = "OFF",
 		ram_block1a_45.init_file = "Font.mif",
 		ram_block1a_45.init_file_layout = "port_a",
 		ram_block1a_45.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_45.mem_init0 = 64'h16B02064828C31B2,
+		ram_block1a_45.mem_init0 = 64'h2D6040C905186364,
 		ram_block1a_45.operation_mode = "rom",
 		ram_block1a_45.port_a_address_clear = "none",
 		ram_block1a_45.port_a_address_width = 6,
@@ -2891,7 +2888,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_46
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_46portadataout[0:0]),
 	.portare(1'b1),
@@ -2903,6 +2899,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -2926,14 +2923,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_46.clk0_core_clock_enable = "ena0",
-		ram_block1a_46.clk0_input_clock_enable = "ena0",
-		ram_block1a_46.clk0_output_clock_enable = "ena0",
+		ram_block1a_46.clk0_core_clock_enable = "none",
+		ram_block1a_46.clk0_input_clock_enable = "none",
+		ram_block1a_46.clk0_output_clock_enable = "none",
 		ram_block1a_46.connectivity_checking = "OFF",
 		ram_block1a_46.init_file = "Font.mif",
 		ram_block1a_46.init_file_layout = "port_a",
 		ram_block1a_46.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_46.mem_init0 = 64'h17020810012404B2,
+		ram_block1a_46.mem_init0 = 64'h2E04102002480964,
 		ram_block1a_46.operation_mode = "rom",
 		ram_block1a_46.port_a_address_clear = "none",
 		ram_block1a_46.port_a_address_width = 6,
@@ -2950,7 +2947,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_47
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_47portadataout[0:0]),
 	.portare(1'b1),
@@ -2962,6 +2958,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -2985,14 +2982,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_47.clk0_core_clock_enable = "ena0",
-		ram_block1a_47.clk0_input_clock_enable = "ena0",
-		ram_block1a_47.clk0_output_clock_enable = "ena0",
+		ram_block1a_47.clk0_core_clock_enable = "none",
+		ram_block1a_47.clk0_input_clock_enable = "none",
+		ram_block1a_47.clk0_output_clock_enable = "none",
 		ram_block1a_47.connectivity_checking = "OFF",
 		ram_block1a_47.init_file = "Font.mif",
 		ram_block1a_47.init_file_layout = "port_a",
 		ram_block1a_47.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_47.mem_init0 = 64'h2615DFC37853FCFF,
+		ram_block1a_47.mem_init0 = 64'h4C2BBF86F0A7F9FE,
 		ram_block1a_47.operation_mode = "rom",
 		ram_block1a_47.port_a_address_clear = "none",
 		ram_block1a_47.port_a_address_width = 6,
@@ -3009,7 +3006,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_48
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_48portadataout[0:0]),
 	.portare(1'b1),
@@ -3021,6 +3017,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -3044,9 +3041,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_48.clk0_core_clock_enable = "ena0",
-		ram_block1a_48.clk0_input_clock_enable = "ena0",
-		ram_block1a_48.clk0_output_clock_enable = "ena0",
+		ram_block1a_48.clk0_core_clock_enable = "none",
+		ram_block1a_48.clk0_input_clock_enable = "none",
+		ram_block1a_48.clk0_output_clock_enable = "none",
 		ram_block1a_48.connectivity_checking = "OFF",
 		ram_block1a_48.init_file = "Font.mif",
 		ram_block1a_48.init_file_layout = "port_a",
@@ -3068,7 +3065,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_49
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_49portadataout[0:0]),
 	.portare(1'b1),
@@ -3080,6 +3076,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -3103,9 +3100,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_49.clk0_core_clock_enable = "ena0",
-		ram_block1a_49.clk0_input_clock_enable = "ena0",
-		ram_block1a_49.clk0_output_clock_enable = "ena0",
+		ram_block1a_49.clk0_core_clock_enable = "none",
+		ram_block1a_49.clk0_input_clock_enable = "none",
+		ram_block1a_49.clk0_output_clock_enable = "none",
 		ram_block1a_49.connectivity_checking = "OFF",
 		ram_block1a_49.init_file = "Font.mif",
 		ram_block1a_49.init_file_layout = "port_a",
@@ -3127,7 +3124,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_50
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_50portadataout[0:0]),
 	.portare(1'b1),
@@ -3139,6 +3135,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -3162,9 +3159,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_50.clk0_core_clock_enable = "ena0",
-		ram_block1a_50.clk0_input_clock_enable = "ena0",
-		ram_block1a_50.clk0_output_clock_enable = "ena0",
+		ram_block1a_50.clk0_core_clock_enable = "none",
+		ram_block1a_50.clk0_input_clock_enable = "none",
+		ram_block1a_50.clk0_output_clock_enable = "none",
 		ram_block1a_50.connectivity_checking = "OFF",
 		ram_block1a_50.init_file = "Font.mif",
 		ram_block1a_50.init_file_layout = "port_a",
@@ -3186,7 +3183,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_51
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_51portadataout[0:0]),
 	.portare(1'b1),
@@ -3198,6 +3194,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -3221,14 +3218,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_51.clk0_core_clock_enable = "ena0",
-		ram_block1a_51.clk0_input_clock_enable = "ena0",
-		ram_block1a_51.clk0_output_clock_enable = "ena0",
+		ram_block1a_51.clk0_core_clock_enable = "none",
+		ram_block1a_51.clk0_input_clock_enable = "none",
+		ram_block1a_51.clk0_output_clock_enable = "none",
 		ram_block1a_51.connectivity_checking = "OFF",
 		ram_block1a_51.init_file = "Font.mif",
 		ram_block1a_51.init_file_layout = "port_a",
 		ram_block1a_51.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_51.mem_init0 = 64'h379547CB6C5570CB,
+		ram_block1a_51.mem_init0 = 64'h6F2A8F96D8AAE196,
 		ram_block1a_51.operation_mode = "rom",
 		ram_block1a_51.port_a_address_clear = "none",
 		ram_block1a_51.port_a_address_width = 6,
@@ -3245,7 +3242,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_52
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_52portadataout[0:0]),
 	.portare(1'b1),
@@ -3257,6 +3253,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -3280,14 +3277,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_52.clk0_core_clock_enable = "ena0",
-		ram_block1a_52.clk0_input_clock_enable = "ena0",
-		ram_block1a_52.clk0_output_clock_enable = "ena0",
+		ram_block1a_52.clk0_core_clock_enable = "none",
+		ram_block1a_52.clk0_input_clock_enable = "none",
+		ram_block1a_52.clk0_output_clock_enable = "none",
 		ram_block1a_52.connectivity_checking = "OFF",
 		ram_block1a_52.init_file = "Font.mif",
 		ram_block1a_52.init_file_layout = "port_a",
 		ram_block1a_52.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_52.mem_init0 = 64'h284090004422A241,
+		ram_block1a_52.mem_init0 = 64'h5081200088454482,
 		ram_block1a_52.operation_mode = "rom",
 		ram_block1a_52.port_a_address_clear = "none",
 		ram_block1a_52.port_a_address_width = 6,
@@ -3304,7 +3301,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_53
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_53portadataout[0:0]),
 	.portare(1'b1),
@@ -3316,6 +3312,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -3339,14 +3336,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_53.clk0_core_clock_enable = "ena0",
-		ram_block1a_53.clk0_input_clock_enable = "ena0",
-		ram_block1a_53.clk0_output_clock_enable = "ena0",
+		ram_block1a_53.clk0_core_clock_enable = "none",
+		ram_block1a_53.clk0_input_clock_enable = "none",
+		ram_block1a_53.clk0_output_clock_enable = "none",
 		ram_block1a_53.connectivity_checking = "OFF",
 		ram_block1a_53.init_file = "Font.mif",
 		ram_block1a_53.init_file_layout = "port_a",
 		ram_block1a_53.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_53.mem_init0 = 64'h202B3074C5CA8141,
+		ram_block1a_53.mem_init0 = 64'h405660E98B950282,
 		ram_block1a_53.operation_mode = "rom",
 		ram_block1a_53.port_a_address_clear = "none",
 		ram_block1a_53.port_a_address_width = 6,
@@ -3363,7 +3360,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_54
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_54portadataout[0:0]),
 	.portare(1'b1),
@@ -3375,6 +3371,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -3398,14 +3395,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_54.clk0_core_clock_enable = "ena0",
-		ram_block1a_54.clk0_input_clock_enable = "ena0",
-		ram_block1a_54.clk0_output_clock_enable = "ena0",
+		ram_block1a_54.clk0_core_clock_enable = "none",
+		ram_block1a_54.clk0_input_clock_enable = "none",
+		ram_block1a_54.clk0_output_clock_enable = "none",
 		ram_block1a_54.connectivity_checking = "OFF",
 		ram_block1a_54.init_file = "Font.mif",
 		ram_block1a_54.init_file_layout = "port_a",
 		ram_block1a_54.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_54.mem_init0 = 64'h2010901046228401,
+		ram_block1a_54.mem_init0 = 64'h402120208C450802,
 		ram_block1a_54.operation_mode = "rom",
 		ram_block1a_54.port_a_address_clear = "none",
 		ram_block1a_54.port_a_address_width = 6,
@@ -3422,7 +3419,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_55
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_55portadataout[0:0]),
 	.portare(1'b1),
@@ -3434,6 +3430,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -3457,14 +3454,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_55.clk0_core_clock_enable = "ena0",
-		ram_block1a_55.clk0_input_clock_enable = "ena0",
-		ram_block1a_55.clk0_output_clock_enable = "ena0",
+		ram_block1a_55.clk0_core_clock_enable = "none",
+		ram_block1a_55.clk0_input_clock_enable = "none",
+		ram_block1a_55.clk0_output_clock_enable = "none",
 		ram_block1a_55.connectivity_checking = "OFF",
 		ram_block1a_55.init_file = "Font.mif",
 		ram_block1a_55.init_file_layout = "port_a",
 		ram_block1a_55.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_55.mem_init0 = 64'h15154FC37853FCFF,
+		ram_block1a_55.mem_init0 = 64'h2A2A9F86F0A7F9FE,
 		ram_block1a_55.operation_mode = "rom",
 		ram_block1a_55.port_a_address_clear = "none",
 		ram_block1a_55.port_a_address_width = 6,
@@ -3481,7 +3478,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_56
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_56portadataout[0:0]),
 	.portare(1'b1),
@@ -3493,6 +3489,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -3516,9 +3513,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_56.clk0_core_clock_enable = "ena0",
-		ram_block1a_56.clk0_input_clock_enable = "ena0",
-		ram_block1a_56.clk0_output_clock_enable = "ena0",
+		ram_block1a_56.clk0_core_clock_enable = "none",
+		ram_block1a_56.clk0_input_clock_enable = "none",
+		ram_block1a_56.clk0_output_clock_enable = "none",
 		ram_block1a_56.connectivity_checking = "OFF",
 		ram_block1a_56.init_file = "Font.mif",
 		ram_block1a_56.init_file_layout = "port_a",
@@ -3540,7 +3537,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_57
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_57portadataout[0:0]),
 	.portare(1'b1),
@@ -3552,6 +3548,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -3575,9 +3572,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_57.clk0_core_clock_enable = "ena0",
-		ram_block1a_57.clk0_input_clock_enable = "ena0",
-		ram_block1a_57.clk0_output_clock_enable = "ena0",
+		ram_block1a_57.clk0_core_clock_enable = "none",
+		ram_block1a_57.clk0_input_clock_enable = "none",
+		ram_block1a_57.clk0_output_clock_enable = "none",
 		ram_block1a_57.connectivity_checking = "OFF",
 		ram_block1a_57.init_file = "Font.mif",
 		ram_block1a_57.init_file_layout = "port_a",
@@ -3599,7 +3596,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_58
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_58portadataout[0:0]),
 	.portare(1'b1),
@@ -3611,6 +3607,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -3634,9 +3631,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_58.clk0_core_clock_enable = "ena0",
-		ram_block1a_58.clk0_input_clock_enable = "ena0",
-		ram_block1a_58.clk0_output_clock_enable = "ena0",
+		ram_block1a_58.clk0_core_clock_enable = "none",
+		ram_block1a_58.clk0_input_clock_enable = "none",
+		ram_block1a_58.clk0_output_clock_enable = "none",
 		ram_block1a_58.connectivity_checking = "OFF",
 		ram_block1a_58.init_file = "Font.mif",
 		ram_block1a_58.init_file_layout = "port_a",
@@ -3658,7 +3655,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_59
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_59portadataout[0:0]),
 	.portare(1'b1),
@@ -3670,6 +3666,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -3693,14 +3690,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_59.clk0_core_clock_enable = "ena0",
-		ram_block1a_59.clk0_input_clock_enable = "ena0",
-		ram_block1a_59.clk0_output_clock_enable = "ena0",
+		ram_block1a_59.clk0_core_clock_enable = "none",
+		ram_block1a_59.clk0_input_clock_enable = "none",
+		ram_block1a_59.clk0_output_clock_enable = "none",
 		ram_block1a_59.connectivity_checking = "OFF",
 		ram_block1a_59.init_file = "Font.mif",
 		ram_block1a_59.init_file_layout = "port_a",
 		ram_block1a_59.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_59.mem_init0 = 64'h379557CB2C5570CB,
+		ram_block1a_59.mem_init0 = 64'h6F2AAF9658AAE196,
 		ram_block1a_59.operation_mode = "rom",
 		ram_block1a_59.port_a_address_clear = "none",
 		ram_block1a_59.port_a_address_width = 6,
@@ -3717,7 +3714,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_60
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_60portadataout[0:0]),
 	.portare(1'b1),
@@ -3729,6 +3725,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -3752,14 +3749,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_60.clk0_core_clock_enable = "ena0",
-		ram_block1a_60.clk0_input_clock_enable = "ena0",
-		ram_block1a_60.clk0_output_clock_enable = "ena0",
+		ram_block1a_60.clk0_core_clock_enable = "none",
+		ram_block1a_60.clk0_input_clock_enable = "none",
+		ram_block1a_60.clk0_output_clock_enable = "none",
 		ram_block1a_60.connectivity_checking = "OFF",
 		ram_block1a_60.init_file = "Font.mif",
 		ram_block1a_60.init_file_layout = "port_a",
 		ram_block1a_60.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_60.mem_init0 = 64'h0100800000A00200,
+		ram_block1a_60.mem_init0 = 64'h0201000001400400,
 		ram_block1a_60.operation_mode = "rom",
 		ram_block1a_60.port_a_address_clear = "none",
 		ram_block1a_60.port_a_address_width = 6,
@@ -3776,7 +3773,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_61
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_61portadataout[0:0]),
 	.portare(1'b1),
@@ -3788,6 +3784,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -3811,14 +3808,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_61.clk0_core_clock_enable = "ena0",
-		ram_block1a_61.clk0_input_clock_enable = "ena0",
-		ram_block1a_61.clk0_output_clock_enable = "ena0",
+		ram_block1a_61.clk0_core_clock_enable = "none",
+		ram_block1a_61.clk0_input_clock_enable = "none",
+		ram_block1a_61.clk0_output_clock_enable = "none",
 		ram_block1a_61.connectivity_checking = "OFF",
 		ram_block1a_61.init_file = "Font.mif",
 		ram_block1a_61.init_file_layout = "port_a",
 		ram_block1a_61.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_61.mem_init0 = 64'h09632074814A0500,
+		ram_block1a_61.mem_init0 = 64'h12C640E902940A00,
 		ram_block1a_61.operation_mode = "rom",
 		ram_block1a_61.port_a_address_clear = "none",
 		ram_block1a_61.port_a_address_width = 6,
@@ -3835,7 +3832,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_62
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_62portadataout[0:0]),
 	.portare(1'b1),
@@ -3847,6 +3843,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -3870,14 +3867,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_62.clk0_core_clock_enable = "ena0",
-		ram_block1a_62.clk0_input_clock_enable = "ena0",
-		ram_block1a_62.clk0_output_clock_enable = "ena0",
+		ram_block1a_62.clk0_core_clock_enable = "none",
+		ram_block1a_62.clk0_input_clock_enable = "none",
+		ram_block1a_62.clk0_output_clock_enable = "none",
 		ram_block1a_62.connectivity_checking = "OFF",
 		ram_block1a_62.init_file = "Font.mif",
 		ram_block1a_62.init_file_layout = "port_a",
 		ram_block1a_62.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_62.mem_init0 = 64'h0108801000A00000,
+		ram_block1a_62.mem_init0 = 64'h0211002001400000,
 		ram_block1a_62.operation_mode = "rom",
 		ram_block1a_62.port_a_address_clear = "none",
 		ram_block1a_62.port_a_address_width = 6,
@@ -3894,7 +3891,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_63
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_63portadataout[0:0]),
 	.portare(1'b1),
@@ -3906,6 +3902,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -3929,14 +3926,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_63.clk0_core_clock_enable = "ena0",
-		ram_block1a_63.clk0_input_clock_enable = "ena0",
-		ram_block1a_63.clk0_output_clock_enable = "ena0",
+		ram_block1a_63.clk0_core_clock_enable = "none",
+		ram_block1a_63.clk0_input_clock_enable = "none",
+		ram_block1a_63.clk0_output_clock_enable = "none",
 		ram_block1a_63.connectivity_checking = "OFF",
 		ram_block1a_63.init_file = "Font.mif",
 		ram_block1a_63.init_file_layout = "port_a",
 		ram_block1a_63.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_63.mem_init0 = 64'h15154FC37E53FEFF,
+		ram_block1a_63.mem_init0 = 64'h2A2A9F86FCA7FDFE,
 		ram_block1a_63.operation_mode = "rom",
 		ram_block1a_63.port_a_address_clear = "none",
 		ram_block1a_63.port_a_address_width = 6,
@@ -3953,7 +3950,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_64
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_64portadataout[0:0]),
 	.portare(1'b1),
@@ -3965,6 +3961,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -3988,9 +3985,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_64.clk0_core_clock_enable = "ena0",
-		ram_block1a_64.clk0_input_clock_enable = "ena0",
-		ram_block1a_64.clk0_output_clock_enable = "ena0",
+		ram_block1a_64.clk0_core_clock_enable = "none",
+		ram_block1a_64.clk0_input_clock_enable = "none",
+		ram_block1a_64.clk0_output_clock_enable = "none",
 		ram_block1a_64.connectivity_checking = "OFF",
 		ram_block1a_64.init_file = "Font.mif",
 		ram_block1a_64.init_file_layout = "port_a",
@@ -4012,7 +4009,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_65
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_65portadataout[0:0]),
 	.portare(1'b1),
@@ -4024,6 +4020,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -4047,9 +4044,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_65.clk0_core_clock_enable = "ena0",
-		ram_block1a_65.clk0_input_clock_enable = "ena0",
-		ram_block1a_65.clk0_output_clock_enable = "ena0",
+		ram_block1a_65.clk0_core_clock_enable = "none",
+		ram_block1a_65.clk0_input_clock_enable = "none",
+		ram_block1a_65.clk0_output_clock_enable = "none",
 		ram_block1a_65.connectivity_checking = "OFF",
 		ram_block1a_65.init_file = "Font.mif",
 		ram_block1a_65.init_file_layout = "port_a",
@@ -4071,7 +4068,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_66
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_66portadataout[0:0]),
 	.portare(1'b1),
@@ -4083,6 +4079,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -4106,9 +4103,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_66.clk0_core_clock_enable = "ena0",
-		ram_block1a_66.clk0_input_clock_enable = "ena0",
-		ram_block1a_66.clk0_output_clock_enable = "ena0",
+		ram_block1a_66.clk0_core_clock_enable = "none",
+		ram_block1a_66.clk0_input_clock_enable = "none",
+		ram_block1a_66.clk0_output_clock_enable = "none",
 		ram_block1a_66.connectivity_checking = "OFF",
 		ram_block1a_66.init_file = "Font.mif",
 		ram_block1a_66.init_file_layout = "port_a",
@@ -4130,7 +4127,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_67
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_67portadataout[0:0]),
 	.portare(1'b1),
@@ -4142,6 +4138,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -4165,14 +4162,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_67.clk0_core_clock_enable = "ena0",
-		ram_block1a_67.clk0_input_clock_enable = "ena0",
-		ram_block1a_67.clk0_output_clock_enable = "ena0",
+		ram_block1a_67.clk0_core_clock_enable = "none",
+		ram_block1a_67.clk0_input_clock_enable = "none",
+		ram_block1a_67.clk0_output_clock_enable = "none",
 		ram_block1a_67.connectivity_checking = "OFF",
 		ram_block1a_67.init_file = "Font.mif",
 		ram_block1a_67.init_file_layout = "port_a",
 		ram_block1a_67.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_67.mem_init0 = 64'h379557CB3CD570C7,
+		ram_block1a_67.mem_init0 = 64'h6F2AAF9679AAE18E,
 		ram_block1a_67.operation_mode = "rom",
 		ram_block1a_67.port_a_address_clear = "none",
 		ram_block1a_67.port_a_address_width = 6,
@@ -4189,7 +4186,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_68
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_68portadataout[0:0]),
 	.portare(1'b1),
@@ -4201,6 +4197,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -4224,14 +4221,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_68.clk0_core_clock_enable = "ena0",
-		ram_block1a_68.clk0_input_clock_enable = "ena0",
-		ram_block1a_68.clk0_output_clock_enable = "ena0",
+		ram_block1a_68.clk0_core_clock_enable = "none",
+		ram_block1a_68.clk0_input_clock_enable = "none",
+		ram_block1a_68.clk0_output_clock_enable = "none",
 		ram_block1a_68.connectivity_checking = "OFF",
 		ram_block1a_68.init_file = "Font.mif",
 		ram_block1a_68.init_file_layout = "port_a",
 		ram_block1a_68.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_68.mem_init0 = 64'h0002001000420608,
+		ram_block1a_68.mem_init0 = 64'h0004002000840C10,
 		ram_block1a_68.operation_mode = "rom",
 		ram_block1a_68.port_a_address_clear = "none",
 		ram_block1a_68.port_a_address_width = 6,
@@ -4248,7 +4245,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_69
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_69portadataout[0:0]),
 	.portare(1'b1),
@@ -4260,6 +4256,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -4283,14 +4280,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_69.clk0_core_clock_enable = "ena0",
-		ram_block1a_69.clk0_input_clock_enable = "ena0",
-		ram_block1a_69.clk0_output_clock_enable = "ena0",
+		ram_block1a_69.clk0_core_clock_enable = "none",
+		ram_block1a_69.clk0_input_clock_enable = "none",
+		ram_block1a_69.clk0_output_clock_enable = "none",
 		ram_block1a_69.connectivity_checking = "OFF",
 		ram_block1a_69.init_file = "Font.mif",
 		ram_block1a_69.init_file_layout = "port_a",
 		ram_block1a_69.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_69.mem_init0 = 64'h0821A06481290100,
+		ram_block1a_69.mem_init0 = 64'h104340C902520200,
 		ram_block1a_69.operation_mode = "rom",
 		ram_block1a_69.port_a_address_clear = "none",
 		ram_block1a_69.port_a_address_width = 6,
@@ -4307,7 +4304,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_70
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_70portadataout[0:0]),
 	.portare(1'b1),
@@ -4319,6 +4315,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -4342,14 +4339,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_70.clk0_core_clock_enable = "ena0",
-		ram_block1a_70.clk0_input_clock_enable = "ena0",
-		ram_block1a_70.clk0_output_clock_enable = "ena0",
+		ram_block1a_70.clk0_core_clock_enable = "none",
+		ram_block1a_70.clk0_input_clock_enable = "none",
+		ram_block1a_70.clk0_output_clock_enable = "none",
 		ram_block1a_70.connectivity_checking = "OFF",
 		ram_block1a_70.init_file = "Font.mif",
 		ram_block1a_70.init_file_layout = "port_a",
 		ram_block1a_70.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_70.mem_init0 = 64'h0042001000400000,
+		ram_block1a_70.mem_init0 = 64'h0084002000800000,
 		ram_block1a_70.operation_mode = "rom",
 		ram_block1a_70.port_a_address_clear = "none",
 		ram_block1a_70.port_a_address_width = 6,
@@ -4366,7 +4363,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_71
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_71portadataout[0:0]),
 	.portare(1'b1),
@@ -4378,6 +4374,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -4401,14 +4398,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_71.clk0_core_clock_enable = "ena0",
-		ram_block1a_71.clk0_input_clock_enable = "ena0",
-		ram_block1a_71.clk0_output_clock_enable = "ena0",
+		ram_block1a_71.clk0_core_clock_enable = "none",
+		ram_block1a_71.clk0_input_clock_enable = "none",
+		ram_block1a_71.clk0_output_clock_enable = "none",
 		ram_block1a_71.connectivity_checking = "OFF",
 		ram_block1a_71.init_file = "Font.mif",
 		ram_block1a_71.init_file_layout = "port_a",
 		ram_block1a_71.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_71.mem_init0 = 64'h169D4FC37ED7FEFF,
+		ram_block1a_71.mem_init0 = 64'h2D3A9F86FDAFFDFE,
 		ram_block1a_71.operation_mode = "rom",
 		ram_block1a_71.port_a_address_clear = "none",
 		ram_block1a_71.port_a_address_width = 6,
@@ -4425,7 +4422,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_72
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_72portadataout[0:0]),
 	.portare(1'b1),
@@ -4437,6 +4433,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -4460,9 +4457,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_72.clk0_core_clock_enable = "ena0",
-		ram_block1a_72.clk0_input_clock_enable = "ena0",
-		ram_block1a_72.clk0_output_clock_enable = "ena0",
+		ram_block1a_72.clk0_core_clock_enable = "none",
+		ram_block1a_72.clk0_input_clock_enable = "none",
+		ram_block1a_72.clk0_output_clock_enable = "none",
 		ram_block1a_72.connectivity_checking = "OFF",
 		ram_block1a_72.init_file = "Font.mif",
 		ram_block1a_72.init_file_layout = "port_a",
@@ -4484,7 +4481,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_73
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_73portadataout[0:0]),
 	.portare(1'b1),
@@ -4496,6 +4492,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -4519,9 +4516,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_73.clk0_core_clock_enable = "ena0",
-		ram_block1a_73.clk0_input_clock_enable = "ena0",
-		ram_block1a_73.clk0_output_clock_enable = "ena0",
+		ram_block1a_73.clk0_core_clock_enable = "none",
+		ram_block1a_73.clk0_input_clock_enable = "none",
+		ram_block1a_73.clk0_output_clock_enable = "none",
 		ram_block1a_73.connectivity_checking = "OFF",
 		ram_block1a_73.init_file = "Font.mif",
 		ram_block1a_73.init_file_layout = "port_a",
@@ -4543,7 +4540,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_74
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_74portadataout[0:0]),
 	.portare(1'b1),
@@ -4555,6 +4551,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -4578,9 +4575,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_74.clk0_core_clock_enable = "ena0",
-		ram_block1a_74.clk0_input_clock_enable = "ena0",
-		ram_block1a_74.clk0_output_clock_enable = "ena0",
+		ram_block1a_74.clk0_core_clock_enable = "none",
+		ram_block1a_74.clk0_input_clock_enable = "none",
+		ram_block1a_74.clk0_output_clock_enable = "none",
 		ram_block1a_74.connectivity_checking = "OFF",
 		ram_block1a_74.init_file = "Font.mif",
 		ram_block1a_74.init_file_layout = "port_a",
@@ -4602,7 +4599,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_75
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_75portadataout[0:0]),
 	.portare(1'b1),
@@ -4614,6 +4610,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -4637,14 +4634,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_75.clk0_core_clock_enable = "ena0",
-		ram_block1a_75.clk0_input_clock_enable = "ena0",
-		ram_block1a_75.clk0_output_clock_enable = "ena0",
+		ram_block1a_75.clk0_core_clock_enable = "none",
+		ram_block1a_75.clk0_input_clock_enable = "none",
+		ram_block1a_75.clk0_output_clock_enable = "none",
 		ram_block1a_75.connectivity_checking = "OFF",
 		ram_block1a_75.init_file = "Font.mif",
 		ram_block1a_75.init_file_layout = "port_a",
 		ram_block1a_75.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_75.mem_init0 = 64'h014E64DB66C23C91,
+		ram_block1a_75.mem_init0 = 64'h029CC9B6CD847922,
 		ram_block1a_75.operation_mode = "rom",
 		ram_block1a_75.port_a_address_clear = "none",
 		ram_block1a_75.port_a_address_width = 6,
@@ -4661,7 +4658,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_76
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_76portadataout[0:0]),
 	.portare(1'b1),
@@ -4673,6 +4669,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -4696,14 +4693,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_76.clk0_core_clock_enable = "ena0",
-		ram_block1a_76.clk0_input_clock_enable = "ena0",
-		ram_block1a_76.clk0_output_clock_enable = "ena0",
+		ram_block1a_76.clk0_core_clock_enable = "none",
+		ram_block1a_76.clk0_input_clock_enable = "none",
+		ram_block1a_76.clk0_output_clock_enable = "none",
 		ram_block1a_76.connectivity_checking = "OFF",
 		ram_block1a_76.init_file = "Font.mif",
 		ram_block1a_76.init_file_layout = "port_a",
 		ram_block1a_76.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_76.mem_init0 = 64'h36FD77257E154956,
+		ram_block1a_76.mem_init0 = 64'h6DFAEE4AFC2A92AC,
 		ram_block1a_76.operation_mode = "rom",
 		ram_block1a_76.port_a_address_clear = "none",
 		ram_block1a_76.port_a_address_width = 6,
@@ -4720,7 +4717,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_77
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_77portadataout[0:0]),
 	.portare(1'b1),
@@ -4732,6 +4728,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -4755,14 +4752,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_77.clk0_core_clock_enable = "ena0",
-		ram_block1a_77.clk0_input_clock_enable = "ena0",
-		ram_block1a_77.clk0_output_clock_enable = "ena0",
+		ram_block1a_77.clk0_core_clock_enable = "none",
+		ram_block1a_77.clk0_input_clock_enable = "none",
+		ram_block1a_77.clk0_output_clock_enable = "none",
 		ram_block1a_77.connectivity_checking = "OFF",
 		ram_block1a_77.init_file = "Font.mif",
 		ram_block1a_77.init_file_layout = "port_a",
 		ram_block1a_77.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_77.mem_init0 = 64'h3EFDD765FF3D4B5E,
+		ram_block1a_77.mem_init0 = 64'h7DFBAECBFE7A96BC,
 		ram_block1a_77.operation_mode = "rom",
 		ram_block1a_77.port_a_address_clear = "none",
 		ram_block1a_77.port_a_address_width = 6,
@@ -4779,7 +4776,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_78
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_78portadataout[0:0]),
 	.portare(1'b1),
@@ -4791,6 +4787,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -4814,14 +4811,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_78.clk0_core_clock_enable = "ena0",
-		ram_block1a_78.clk0_input_clock_enable = "ena0",
-		ram_block1a_78.clk0_output_clock_enable = "ena0",
+		ram_block1a_78.clk0_core_clock_enable = "none",
+		ram_block1a_78.clk0_input_clock_enable = "none",
+		ram_block1a_78.clk0_output_clock_enable = "none",
 		ram_block1a_78.connectivity_checking = "OFF",
 		ram_block1a_78.init_file = "Font.mif",
 		ram_block1a_78.init_file_layout = "port_a",
 		ram_block1a_78.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_78.mem_init0 = 64'h36FD57357E154B5E,
+		ram_block1a_78.mem_init0 = 64'h6DFAAE6AFC2A96BC,
 		ram_block1a_78.operation_mode = "rom",
 		ram_block1a_78.port_a_address_clear = "none",
 		ram_block1a_78.port_a_address_width = 6,
@@ -4838,7 +4835,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_79
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_79portadataout[0:0]),
 	.portare(1'b1),
@@ -4850,6 +4846,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -4873,14 +4870,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_79.clk0_core_clock_enable = "ena0",
-		ram_block1a_79.clk0_input_clock_enable = "ena0",
-		ram_block1a_79.clk0_output_clock_enable = "ena0",
+		ram_block1a_79.clk0_core_clock_enable = "none",
+		ram_block1a_79.clk0_input_clock_enable = "none",
+		ram_block1a_79.clk0_output_clock_enable = "none",
 		ram_block1a_79.connectivity_checking = "OFF",
 		ram_block1a_79.init_file = "Font.mif",
 		ram_block1a_79.init_file_layout = "port_a",
 		ram_block1a_79.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_79.mem_init0 = 64'h004A1AC20AC2BCBB,
+		ram_block1a_79.mem_init0 = 64'h0094358415857976,
 		ram_block1a_79.operation_mode = "rom",
 		ram_block1a_79.port_a_address_clear = "none",
 		ram_block1a_79.port_a_address_width = 6,
@@ -4897,7 +4894,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_80
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_80portadataout[0:0]),
 	.portare(1'b1),
@@ -4909,6 +4905,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -4932,9 +4929,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_80.clk0_core_clock_enable = "ena0",
-		ram_block1a_80.clk0_input_clock_enable = "ena0",
-		ram_block1a_80.clk0_output_clock_enable = "ena0",
+		ram_block1a_80.clk0_core_clock_enable = "none",
+		ram_block1a_80.clk0_input_clock_enable = "none",
+		ram_block1a_80.clk0_output_clock_enable = "none",
 		ram_block1a_80.connectivity_checking = "OFF",
 		ram_block1a_80.init_file = "Font.mif",
 		ram_block1a_80.init_file_layout = "port_a",
@@ -4956,7 +4953,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_81
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_81portadataout[0:0]),
 	.portare(1'b1),
@@ -4968,6 +4964,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -4991,9 +4988,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_81.clk0_core_clock_enable = "ena0",
-		ram_block1a_81.clk0_input_clock_enable = "ena0",
-		ram_block1a_81.clk0_output_clock_enable = "ena0",
+		ram_block1a_81.clk0_core_clock_enable = "none",
+		ram_block1a_81.clk0_input_clock_enable = "none",
+		ram_block1a_81.clk0_output_clock_enable = "none",
 		ram_block1a_81.connectivity_checking = "OFF",
 		ram_block1a_81.init_file = "Font.mif",
 		ram_block1a_81.init_file_layout = "port_a",
@@ -5015,7 +5012,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_82
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_82portadataout[0:0]),
 	.portare(1'b1),
@@ -5027,6 +5023,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -5050,9 +5047,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_82.clk0_core_clock_enable = "ena0",
-		ram_block1a_82.clk0_input_clock_enable = "ena0",
-		ram_block1a_82.clk0_output_clock_enable = "ena0",
+		ram_block1a_82.clk0_core_clock_enable = "none",
+		ram_block1a_82.clk0_input_clock_enable = "none",
+		ram_block1a_82.clk0_output_clock_enable = "none",
 		ram_block1a_82.connectivity_checking = "OFF",
 		ram_block1a_82.init_file = "Font.mif",
 		ram_block1a_82.init_file_layout = "port_a",
@@ -5074,7 +5071,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_83
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_83portadataout[0:0]),
 	.portare(1'b1),
@@ -5086,6 +5082,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -5109,14 +5106,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_83.clk0_core_clock_enable = "ena0",
-		ram_block1a_83.clk0_input_clock_enable = "ena0",
-		ram_block1a_83.clk0_output_clock_enable = "ena0",
+		ram_block1a_83.clk0_core_clock_enable = "none",
+		ram_block1a_83.clk0_input_clock_enable = "none",
+		ram_block1a_83.clk0_output_clock_enable = "none",
 		ram_block1a_83.connectivity_checking = "OFF",
 		ram_block1a_83.init_file = "Font.mif",
 		ram_block1a_83.init_file_layout = "port_a",
 		ram_block1a_83.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_83.mem_init0 = 64'h0004040900010000,
+		ram_block1a_83.mem_init0 = 64'h0008081200020000,
 		ram_block1a_83.operation_mode = "rom",
 		ram_block1a_83.port_a_address_clear = "none",
 		ram_block1a_83.port_a_address_width = 6,
@@ -5133,7 +5130,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_84
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_84portadataout[0:0]),
 	.portare(1'b1),
@@ -5145,6 +5141,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -5168,9 +5165,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_84.clk0_core_clock_enable = "ena0",
-		ram_block1a_84.clk0_input_clock_enable = "ena0",
-		ram_block1a_84.clk0_output_clock_enable = "ena0",
+		ram_block1a_84.clk0_core_clock_enable = "none",
+		ram_block1a_84.clk0_input_clock_enable = "none",
+		ram_block1a_84.clk0_output_clock_enable = "none",
 		ram_block1a_84.connectivity_checking = "OFF",
 		ram_block1a_84.init_file = "Font.mif",
 		ram_block1a_84.init_file_layout = "port_a",
@@ -5192,7 +5189,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_85
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_85portadataout[0:0]),
 	.portare(1'b1),
@@ -5204,6 +5200,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -5227,9 +5224,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_85.clk0_core_clock_enable = "ena0",
-		ram_block1a_85.clk0_input_clock_enable = "ena0",
-		ram_block1a_85.clk0_output_clock_enable = "ena0",
+		ram_block1a_85.clk0_core_clock_enable = "none",
+		ram_block1a_85.clk0_input_clock_enable = "none",
+		ram_block1a_85.clk0_output_clock_enable = "none",
 		ram_block1a_85.connectivity_checking = "OFF",
 		ram_block1a_85.init_file = "Font.mif",
 		ram_block1a_85.init_file_layout = "port_a",
@@ -5251,7 +5248,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_86
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_86portadataout[0:0]),
 	.portare(1'b1),
@@ -5263,6 +5259,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -5286,14 +5283,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_86.clk0_core_clock_enable = "ena0",
-		ram_block1a_86.clk0_input_clock_enable = "ena0",
-		ram_block1a_86.clk0_output_clock_enable = "ena0",
+		ram_block1a_86.clk0_core_clock_enable = "none",
+		ram_block1a_86.clk0_input_clock_enable = "none",
+		ram_block1a_86.clk0_output_clock_enable = "none",
 		ram_block1a_86.connectivity_checking = "OFF",
 		ram_block1a_86.init_file = "Font.mif",
 		ram_block1a_86.init_file_layout = "port_a",
 		ram_block1a_86.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_86.mem_init0 = 64'h0000000800000000,
+		ram_block1a_86.mem_init0 = 64'h0000001000000000,
 		ram_block1a_86.operation_mode = "rom",
 		ram_block1a_86.port_a_address_clear = "none",
 		ram_block1a_86.port_a_address_width = 6,
@@ -5310,7 +5307,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_87
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_87portadataout[0:0]),
 	.portare(1'b1),
@@ -5322,6 +5318,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -5345,14 +5342,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_87.clk0_core_clock_enable = "ena0",
-		ram_block1a_87.clk0_input_clock_enable = "ena0",
-		ram_block1a_87.clk0_output_clock_enable = "ena0",
+		ram_block1a_87.clk0_core_clock_enable = "none",
+		ram_block1a_87.clk0_input_clock_enable = "none",
+		ram_block1a_87.clk0_output_clock_enable = "none",
 		ram_block1a_87.connectivity_checking = "OFF",
 		ram_block1a_87.init_file = "Font.mif",
 		ram_block1a_87.init_file_layout = "port_a",
 		ram_block1a_87.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_87.mem_init0 = 64'h0000020000000000,
+		ram_block1a_87.mem_init0 = 64'h0000040000000000,
 		ram_block1a_87.operation_mode = "rom",
 		ram_block1a_87.port_a_address_clear = "none",
 		ram_block1a_87.port_a_address_width = 6,
@@ -5369,7 +5366,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_88
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_88portadataout[0:0]),
 	.portare(1'b1),
@@ -5381,6 +5377,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -5404,9 +5401,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_88.clk0_core_clock_enable = "ena0",
-		ram_block1a_88.clk0_input_clock_enable = "ena0",
-		ram_block1a_88.clk0_output_clock_enable = "ena0",
+		ram_block1a_88.clk0_core_clock_enable = "none",
+		ram_block1a_88.clk0_input_clock_enable = "none",
+		ram_block1a_88.clk0_output_clock_enable = "none",
 		ram_block1a_88.connectivity_checking = "OFF",
 		ram_block1a_88.init_file = "Font.mif",
 		ram_block1a_88.init_file_layout = "port_a",
@@ -5428,7 +5425,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_89
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_89portadataout[0:0]),
 	.portare(1'b1),
@@ -5440,6 +5436,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -5463,9 +5460,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_89.clk0_core_clock_enable = "ena0",
-		ram_block1a_89.clk0_input_clock_enable = "ena0",
-		ram_block1a_89.clk0_output_clock_enable = "ena0",
+		ram_block1a_89.clk0_core_clock_enable = "none",
+		ram_block1a_89.clk0_input_clock_enable = "none",
+		ram_block1a_89.clk0_output_clock_enable = "none",
 		ram_block1a_89.connectivity_checking = "OFF",
 		ram_block1a_89.init_file = "Font.mif",
 		ram_block1a_89.init_file_layout = "port_a",
@@ -5487,7 +5484,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_90
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_90portadataout[0:0]),
 	.portare(1'b1),
@@ -5499,6 +5495,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -5522,9 +5519,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_90.clk0_core_clock_enable = "ena0",
-		ram_block1a_90.clk0_input_clock_enable = "ena0",
-		ram_block1a_90.clk0_output_clock_enable = "ena0",
+		ram_block1a_90.clk0_core_clock_enable = "none",
+		ram_block1a_90.clk0_input_clock_enable = "none",
+		ram_block1a_90.clk0_output_clock_enable = "none",
 		ram_block1a_90.connectivity_checking = "OFF",
 		ram_block1a_90.init_file = "Font.mif",
 		ram_block1a_90.init_file_layout = "port_a",
@@ -5546,7 +5543,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_91
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_91portadataout[0:0]),
 	.portare(1'b1),
@@ -5558,6 +5554,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -5581,14 +5578,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_91.clk0_core_clock_enable = "ena0",
-		ram_block1a_91.clk0_input_clock_enable = "ena0",
-		ram_block1a_91.clk0_output_clock_enable = "ena0",
+		ram_block1a_91.clk0_core_clock_enable = "none",
+		ram_block1a_91.clk0_input_clock_enable = "none",
+		ram_block1a_91.clk0_output_clock_enable = "none",
 		ram_block1a_91.connectivity_checking = "OFF",
 		ram_block1a_91.init_file = "Font.mif",
 		ram_block1a_91.init_file_layout = "port_a",
 		ram_block1a_91.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_91.mem_init0 = 64'h0000040000000000,
+		ram_block1a_91.mem_init0 = 64'h0000080000000000,
 		ram_block1a_91.operation_mode = "rom",
 		ram_block1a_91.port_a_address_clear = "none",
 		ram_block1a_91.port_a_address_width = 6,
@@ -5605,7 +5602,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_92
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_92portadataout[0:0]),
 	.portare(1'b1),
@@ -5617,6 +5613,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -5640,14 +5637,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_92.clk0_core_clock_enable = "ena0",
-		ram_block1a_92.clk0_input_clock_enable = "ena0",
-		ram_block1a_92.clk0_output_clock_enable = "ena0",
+		ram_block1a_92.clk0_core_clock_enable = "none",
+		ram_block1a_92.clk0_input_clock_enable = "none",
+		ram_block1a_92.clk0_output_clock_enable = "none",
 		ram_block1a_92.connectivity_checking = "OFF",
 		ram_block1a_92.init_file = "Font.mif",
 		ram_block1a_92.init_file_layout = "port_a",
 		ram_block1a_92.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_92.mem_init0 = 64'h0004000900000000,
+		ram_block1a_92.mem_init0 = 64'h0008001200000000,
 		ram_block1a_92.operation_mode = "rom",
 		ram_block1a_92.port_a_address_clear = "none",
 		ram_block1a_92.port_a_address_width = 6,
@@ -5664,7 +5661,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_93
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_93portadataout[0:0]),
 	.portare(1'b1),
@@ -5676,6 +5672,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -5699,14 +5696,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_93.clk0_core_clock_enable = "ena0",
-		ram_block1a_93.clk0_input_clock_enable = "ena0",
-		ram_block1a_93.clk0_output_clock_enable = "ena0",
+		ram_block1a_93.clk0_core_clock_enable = "none",
+		ram_block1a_93.clk0_input_clock_enable = "none",
+		ram_block1a_93.clk0_output_clock_enable = "none",
 		ram_block1a_93.connectivity_checking = "OFF",
 		ram_block1a_93.init_file = "Font.mif",
 		ram_block1a_93.init_file_layout = "port_a",
 		ram_block1a_93.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_93.mem_init0 = 64'h0004000900000000,
+		ram_block1a_93.mem_init0 = 64'h0008001200000000,
 		ram_block1a_93.operation_mode = "rom",
 		ram_block1a_93.port_a_address_clear = "none",
 		ram_block1a_93.port_a_address_width = 6,
@@ -5723,7 +5720,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_94
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_94portadataout[0:0]),
 	.portare(1'b1),
@@ -5735,6 +5731,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -5758,14 +5755,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_94.clk0_core_clock_enable = "ena0",
-		ram_block1a_94.clk0_input_clock_enable = "ena0",
-		ram_block1a_94.clk0_output_clock_enable = "ena0",
+		ram_block1a_94.clk0_core_clock_enable = "none",
+		ram_block1a_94.clk0_input_clock_enable = "none",
+		ram_block1a_94.clk0_output_clock_enable = "none",
 		ram_block1a_94.connectivity_checking = "OFF",
 		ram_block1a_94.init_file = "Font.mif",
 		ram_block1a_94.init_file_layout = "port_a",
 		ram_block1a_94.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_94.mem_init0 = 64'h0004000100000000,
+		ram_block1a_94.mem_init0 = 64'h0008000200000000,
 		ram_block1a_94.operation_mode = "rom",
 		ram_block1a_94.port_a_address_clear = "none",
 		ram_block1a_94.port_a_address_width = 6,
@@ -5782,7 +5779,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_95
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_95portadataout[0:0]),
 	.portare(1'b1),
@@ -5794,6 +5790,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -5817,14 +5814,14 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_95.clk0_core_clock_enable = "ena0",
-		ram_block1a_95.clk0_input_clock_enable = "ena0",
-		ram_block1a_95.clk0_output_clock_enable = "ena0",
+		ram_block1a_95.clk0_core_clock_enable = "none",
+		ram_block1a_95.clk0_input_clock_enable = "none",
+		ram_block1a_95.clk0_output_clock_enable = "none",
 		ram_block1a_95.connectivity_checking = "OFF",
 		ram_block1a_95.init_file = "Font.mif",
 		ram_block1a_95.init_file_layout = "port_a",
 		ram_block1a_95.logical_ram_name = "ALTSYNCRAM",
-		ram_block1a_95.mem_init0 = 64'h0000020000000000,
+		ram_block1a_95.mem_init0 = 64'h0000040000000000,
 		ram_block1a_95.operation_mode = "rom",
 		ram_block1a_95.port_a_address_clear = "none",
 		ram_block1a_95.port_a_address_width = 6,
@@ -5841,7 +5838,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_96
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_96portadataout[0:0]),
 	.portare(1'b1),
@@ -5853,6 +5849,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -5876,9 +5873,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_96.clk0_core_clock_enable = "ena0",
-		ram_block1a_96.clk0_input_clock_enable = "ena0",
-		ram_block1a_96.clk0_output_clock_enable = "ena0",
+		ram_block1a_96.clk0_core_clock_enable = "none",
+		ram_block1a_96.clk0_input_clock_enable = "none",
+		ram_block1a_96.clk0_output_clock_enable = "none",
 		ram_block1a_96.connectivity_checking = "OFF",
 		ram_block1a_96.init_file = "Font.mif",
 		ram_block1a_96.init_file_layout = "port_a",
@@ -5900,7 +5897,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_97
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_97portadataout[0:0]),
 	.portare(1'b1),
@@ -5912,6 +5908,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -5935,9 +5932,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_97.clk0_core_clock_enable = "ena0",
-		ram_block1a_97.clk0_input_clock_enable = "ena0",
-		ram_block1a_97.clk0_output_clock_enable = "ena0",
+		ram_block1a_97.clk0_core_clock_enable = "none",
+		ram_block1a_97.clk0_input_clock_enable = "none",
+		ram_block1a_97.clk0_output_clock_enable = "none",
 		ram_block1a_97.connectivity_checking = "OFF",
 		ram_block1a_97.init_file = "Font.mif",
 		ram_block1a_97.init_file_layout = "port_a",
@@ -5959,7 +5956,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_98
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_98portadataout[0:0]),
 	.portare(1'b1),
@@ -5971,6 +5967,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -5994,9 +5991,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_98.clk0_core_clock_enable = "ena0",
-		ram_block1a_98.clk0_input_clock_enable = "ena0",
-		ram_block1a_98.clk0_output_clock_enable = "ena0",
+		ram_block1a_98.clk0_core_clock_enable = "none",
+		ram_block1a_98.clk0_input_clock_enable = "none",
+		ram_block1a_98.clk0_output_clock_enable = "none",
 		ram_block1a_98.connectivity_checking = "OFF",
 		ram_block1a_98.init_file = "Font.mif",
 		ram_block1a_98.init_file_layout = "port_a",
@@ -6018,7 +6015,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_99
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_99portadataout[0:0]),
 	.portare(1'b1),
@@ -6030,6 +6026,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -6053,9 +6050,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_99.clk0_core_clock_enable = "ena0",
-		ram_block1a_99.clk0_input_clock_enable = "ena0",
-		ram_block1a_99.clk0_output_clock_enable = "ena0",
+		ram_block1a_99.clk0_core_clock_enable = "none",
+		ram_block1a_99.clk0_input_clock_enable = "none",
+		ram_block1a_99.clk0_output_clock_enable = "none",
 		ram_block1a_99.connectivity_checking = "OFF",
 		ram_block1a_99.init_file = "Font.mif",
 		ram_block1a_99.init_file_layout = "port_a",
@@ -6077,7 +6074,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_100
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_100portadataout[0:0]),
 	.portare(1'b1),
@@ -6089,6 +6085,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -6112,9 +6109,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_100.clk0_core_clock_enable = "ena0",
-		ram_block1a_100.clk0_input_clock_enable = "ena0",
-		ram_block1a_100.clk0_output_clock_enable = "ena0",
+		ram_block1a_100.clk0_core_clock_enable = "none",
+		ram_block1a_100.clk0_input_clock_enable = "none",
+		ram_block1a_100.clk0_output_clock_enable = "none",
 		ram_block1a_100.connectivity_checking = "OFF",
 		ram_block1a_100.init_file = "Font.mif",
 		ram_block1a_100.init_file_layout = "port_a",
@@ -6136,7 +6133,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_101
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_101portadataout[0:0]),
 	.portare(1'b1),
@@ -6148,6 +6144,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -6171,9 +6168,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_101.clk0_core_clock_enable = "ena0",
-		ram_block1a_101.clk0_input_clock_enable = "ena0",
-		ram_block1a_101.clk0_output_clock_enable = "ena0",
+		ram_block1a_101.clk0_core_clock_enable = "none",
+		ram_block1a_101.clk0_input_clock_enable = "none",
+		ram_block1a_101.clk0_output_clock_enable = "none",
 		ram_block1a_101.connectivity_checking = "OFF",
 		ram_block1a_101.init_file = "Font.mif",
 		ram_block1a_101.init_file_layout = "port_a",
@@ -6195,7 +6192,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_102
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_102portadataout[0:0]),
 	.portare(1'b1),
@@ -6207,6 +6203,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -6230,9 +6227,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_102.clk0_core_clock_enable = "ena0",
-		ram_block1a_102.clk0_input_clock_enable = "ena0",
-		ram_block1a_102.clk0_output_clock_enable = "ena0",
+		ram_block1a_102.clk0_core_clock_enable = "none",
+		ram_block1a_102.clk0_input_clock_enable = "none",
+		ram_block1a_102.clk0_output_clock_enable = "none",
 		ram_block1a_102.connectivity_checking = "OFF",
 		ram_block1a_102.init_file = "Font.mif",
 		ram_block1a_102.init_file_layout = "port_a",
@@ -6254,7 +6251,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_103
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_103portadataout[0:0]),
 	.portare(1'b1),
@@ -6266,6 +6262,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -6289,9 +6286,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_103.clk0_core_clock_enable = "ena0",
-		ram_block1a_103.clk0_input_clock_enable = "ena0",
-		ram_block1a_103.clk0_output_clock_enable = "ena0",
+		ram_block1a_103.clk0_core_clock_enable = "none",
+		ram_block1a_103.clk0_input_clock_enable = "none",
+		ram_block1a_103.clk0_output_clock_enable = "none",
 		ram_block1a_103.connectivity_checking = "OFF",
 		ram_block1a_103.init_file = "Font.mif",
 		ram_block1a_103.init_file_layout = "port_a",
@@ -6313,7 +6310,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_104
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_104portadataout[0:0]),
 	.portare(1'b1),
@@ -6325,6 +6321,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -6348,9 +6345,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_104.clk0_core_clock_enable = "ena0",
-		ram_block1a_104.clk0_input_clock_enable = "ena0",
-		ram_block1a_104.clk0_output_clock_enable = "ena0",
+		ram_block1a_104.clk0_core_clock_enable = "none",
+		ram_block1a_104.clk0_input_clock_enable = "none",
+		ram_block1a_104.clk0_output_clock_enable = "none",
 		ram_block1a_104.connectivity_checking = "OFF",
 		ram_block1a_104.init_file = "Font.mif",
 		ram_block1a_104.init_file_layout = "port_a",
@@ -6372,7 +6369,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_105
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_105portadataout[0:0]),
 	.portare(1'b1),
@@ -6384,6 +6380,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -6407,9 +6404,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_105.clk0_core_clock_enable = "ena0",
-		ram_block1a_105.clk0_input_clock_enable = "ena0",
-		ram_block1a_105.clk0_output_clock_enable = "ena0",
+		ram_block1a_105.clk0_core_clock_enable = "none",
+		ram_block1a_105.clk0_input_clock_enable = "none",
+		ram_block1a_105.clk0_output_clock_enable = "none",
 		ram_block1a_105.connectivity_checking = "OFF",
 		ram_block1a_105.init_file = "Font.mif",
 		ram_block1a_105.init_file_layout = "port_a",
@@ -6431,7 +6428,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_106
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_106portadataout[0:0]),
 	.portare(1'b1),
@@ -6443,6 +6439,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -6466,9 +6463,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_106.clk0_core_clock_enable = "ena0",
-		ram_block1a_106.clk0_input_clock_enable = "ena0",
-		ram_block1a_106.clk0_output_clock_enable = "ena0",
+		ram_block1a_106.clk0_core_clock_enable = "none",
+		ram_block1a_106.clk0_input_clock_enable = "none",
+		ram_block1a_106.clk0_output_clock_enable = "none",
 		ram_block1a_106.connectivity_checking = "OFF",
 		ram_block1a_106.init_file = "Font.mif",
 		ram_block1a_106.init_file_layout = "port_a",
@@ -6490,7 +6487,6 @@ module  Font_Memory_altsyncram
 	cyclone10lp_ram_block   ram_block1a_107
 	( 
 	.clk0(clock0),
-	.ena0(clocken0),
 	.portaaddr({address_a_wire[5:0]}),
 	.portadataout(wire_ram_block1a_107portadataout[0:0]),
 	.portare(1'b1),
@@ -6502,6 +6498,7 @@ module  Font_Memory_altsyncram
 	.clk1(1'b0),
 	.clr0(1'b0),
 	.clr1(1'b0),
+	.ena0(1'b1),
 	.ena1(1'b1),
 	.ena2(1'b1),
 	.ena3(1'b1),
@@ -6525,9 +6522,9 @@ module  Font_Memory_altsyncram
 	// synopsys translate_on
 	);
 	defparam
-		ram_block1a_107.clk0_core_clock_enable = "ena0",
-		ram_block1a_107.clk0_input_clock_enable = "ena0",
-		ram_block1a_107.clk0_output_clock_enable = "ena0",
+		ram_block1a_107.clk0_core_clock_enable = "none",
+		ram_block1a_107.clk0_input_clock_enable = "none",
+		ram_block1a_107.clk0_output_clock_enable = "none",
 		ram_block1a_107.connectivity_checking = "OFF",
 		ram_block1a_107.init_file = "Font.mif",
 		ram_block1a_107.init_file_layout = "port_a",
@@ -6550,10 +6547,6 @@ module  Font_Memory_altsyncram
 		address_a_wire = address_a,
 		q_a = {wire_ram_block1a_107portadataout[0], wire_ram_block1a_106portadataout[0], wire_ram_block1a_105portadataout[0], wire_ram_block1a_104portadataout[0], wire_ram_block1a_103portadataout[0], wire_ram_block1a_102portadataout[0], wire_ram_block1a_101portadataout[0], wire_ram_block1a_100portadataout[0], wire_ram_block1a_99portadataout[0], wire_ram_block1a_98portadataout[0], wire_ram_block1a_97portadataout[0], wire_ram_block1a_96portadataout[0], wire_ram_block1a_95portadataout[0], wire_ram_block1a_94portadataout[0], wire_ram_block1a_93portadataout[0], wire_ram_block1a_92portadataout[0], wire_ram_block1a_91portadataout[0], wire_ram_block1a_90portadataout[0], wire_ram_block1a_89portadataout[0], wire_ram_block1a_88portadataout[0], wire_ram_block1a_87portadataout[0], wire_ram_block1a_86portadataout[0], wire_ram_block1a_85portadataout[0], wire_ram_block1a_84portadataout[0], wire_ram_block1a_83portadataout[0], wire_ram_block1a_82portadataout[0], wire_ram_block1a_81portadataout[0], wire_ram_block1a_80portadataout[0], wire_ram_block1a_79portadataout[0], wire_ram_block1a_78portadataout[0], wire_ram_block1a_77portadataout[0], wire_ram_block1a_76portadataout[0], wire_ram_block1a_75portadataout[0], wire_ram_block1a_74portadataout[0], wire_ram_block1a_73portadataout[0], wire_ram_block1a_72portadataout[0], wire_ram_block1a_71portadataout[0], wire_ram_block1a_70portadataout[0], wire_ram_block1a_69portadataout[0], wire_ram_block1a_68portadataout[0], wire_ram_block1a_67portadataout[0], wire_ram_block1a_66portadataout[0], wire_ram_block1a_65portadataout[0], wire_ram_block1a_64portadataout[0], wire_ram_block1a_63portadataout[0], wire_ram_block1a_62portadataout[0], wire_ram_block1a_61portadataout[0], wire_ram_block1a_60portadataout[0], wire_ram_block1a_59portadataout[0], wire_ram_block1a_58portadataout[0], wire_ram_block1a_57portadataout[0], wire_ram_block1a_56portadataout[0], wire_ram_block1a_55portadataout[0], wire_ram_block1a_54portadataout[0], wire_ram_block1a_53portadataout[0], wire_ram_block1a_52portadataout[0], wire_ram_block1a_51portadataout[0]
 , wire_ram_block1a_50portadataout[0], wire_ram_block1a_49portadataout[0], wire_ram_block1a_48portadataout[0], wire_ram_block1a_47portadataout[0], wire_ram_block1a_46portadataout[0], wire_ram_block1a_45portadataout[0], wire_ram_block1a_44portadataout[0], wire_ram_block1a_43portadataout[0], wire_ram_block1a_42portadataout[0], wire_ram_block1a_41portadataout[0], wire_ram_block1a_40portadataout[0], wire_ram_block1a_39portadataout[0], wire_ram_block1a_38portadataout[0], wire_ram_block1a_37portadataout[0], wire_ram_block1a_36portadataout[0], wire_ram_block1a_35portadataout[0], wire_ram_block1a_34portadataout[0], wire_ram_block1a_33portadataout[0], wire_ram_block1a_32portadataout[0], wire_ram_block1a_31portadataout[0], wire_ram_block1a_30portadataout[0], wire_ram_block1a_29portadataout[0], wire_ram_block1a_28portadataout[0], wire_ram_block1a_27portadataout[0], wire_ram_block1a_26portadataout[0], wire_ram_block1a_25portadataout[0], wire_ram_block1a_24portadataout[0], wire_ram_block1a_23portadataout[0], wire_ram_block1a_22portadataout[0], wire_ram_block1a_21portadataout[0], wire_ram_block1a_20portadataout[0], wire_ram_block1a_19portadataout[0], wire_ram_block1a_18portadataout[0], wire_ram_block1a_17portadataout[0], wire_ram_block1a_16portadataout[0], wire_ram_block1a_15portadataout[0], wire_ram_block1a_14portadataout[0], wire_ram_block1a_13portadataout[0], wire_ram_block1a_12portadataout[0], wire_ram_block1a_11portadataout[0], wire_ram_block1a_10portadataout[0], wire_ram_block1a_9portadataout[0], wire_ram_block1a_8portadataout[0], wire_ram_block1a_7portadataout[0], wire_ram_block1a_6portadataout[0], wire_ram_block1a_5portadataout[0], wire_ram_block1a_4portadataout[0], wire_ram_block1a_3portadataout[0], wire_ram_block1a_2portadataout[0], wire_ram_block1a_1portadataout[0], wire_ram_block1a_0portadataout[0]};
-	initial/*synthesis enable_verilog_initial_construct*/
- 	begin
-		$display("Warning: Memory initialization file Font.mif is not of the dimensions 64 X 108, the resulting memory design may not produce consistent simulation results.");
-	end
 endmodule //Font_Memory_altsyncram
 //VALID FILE
 
@@ -6563,18 +6556,15 @@ endmodule //Font_Memory_altsyncram
 // synopsys translate_on
 module Font_Memory (
 	address,
-	clken,
 	clock,
 	q)/* synthesis synthesis_clearbox = 1 */;
 
 	input	[5:0]  address;
-	input	  clken;
 	input	  clock;
 	output	[107:0]  q;
 `ifndef ALTERA_RESERVED_QIS
 // synopsys translate_off
 `endif
-	tri1	  clken;
 	tri1	  clock;
 `ifndef ALTERA_RESERVED_QIS
 // synopsys translate_on
@@ -6586,7 +6576,6 @@ module Font_Memory (
 	Font_Memory_altsyncram	Font_Memory_altsyncram_component (
 				.address_a (address),
 				.clock0 (clock),
-				.clocken0 (clken),
 				.q_a (sub_wire0));
 
 endmodule
@@ -6601,9 +6590,9 @@ endmodule
 // Retrieval info: PRIVATE: BYTE_ENABLE NUMERIC "0"
 // Retrieval info: PRIVATE: BYTE_SIZE NUMERIC "9"
 // Retrieval info: PRIVATE: BlankMemory NUMERIC "0"
-// Retrieval info: PRIVATE: CLOCK_ENABLE_INPUT_A NUMERIC "1"
-// Retrieval info: PRIVATE: CLOCK_ENABLE_OUTPUT_A NUMERIC "1"
-// Retrieval info: PRIVATE: Clken NUMERIC "1"
+// Retrieval info: PRIVATE: CLOCK_ENABLE_INPUT_A NUMERIC "0"
+// Retrieval info: PRIVATE: CLOCK_ENABLE_OUTPUT_A NUMERIC "0"
+// Retrieval info: PRIVATE: Clken NUMERIC "0"
 // Retrieval info: PRIVATE: IMPLEMENT_IN_LES NUMERIC "0"
 // Retrieval info: PRIVATE: INIT_FILE_LAYOUT STRING "PORT_A"
 // Retrieval info: PRIVATE: INIT_TO_SIM_X NUMERIC "0"
@@ -6624,8 +6613,8 @@ endmodule
 // Retrieval info: PRIVATE: rden NUMERIC "0"
 // Retrieval info: LIBRARY: altera_mf altera_mf.altera_mf_components.all
 // Retrieval info: CONSTANT: ADDRESS_ACLR_A STRING "NONE"
-// Retrieval info: CONSTANT: CLOCK_ENABLE_INPUT_A STRING "NORMAL"
-// Retrieval info: CONSTANT: CLOCK_ENABLE_OUTPUT_A STRING "NORMAL"
+// Retrieval info: CONSTANT: CLOCK_ENABLE_INPUT_A STRING "BYPASS"
+// Retrieval info: CONSTANT: CLOCK_ENABLE_OUTPUT_A STRING "BYPASS"
 // Retrieval info: CONSTANT: INIT_FILE STRING "Font.mif"
 // Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone 10 LP"
 // Retrieval info: CONSTANT: LPM_HINT STRING "ENABLE_RUNTIME_MOD=NO"
@@ -6638,12 +6627,10 @@ endmodule
 // Retrieval info: CONSTANT: WIDTH_A NUMERIC "108"
 // Retrieval info: CONSTANT: WIDTH_BYTEENA_A NUMERIC "1"
 // Retrieval info: USED_PORT: address 0 0 6 0 INPUT NODEFVAL "address[5..0]"
-// Retrieval info: USED_PORT: clken 0 0 0 0 INPUT VCC "clken"
 // Retrieval info: USED_PORT: clock 0 0 0 0 INPUT VCC "clock"
 // Retrieval info: USED_PORT: q 0 0 108 0 OUTPUT NODEFVAL "q[107..0]"
 // Retrieval info: CONNECT: @address_a 0 0 6 0 address 0 0 6 0
 // Retrieval info: CONNECT: @clock0 0 0 0 0 clock 0 0 0 0
-// Retrieval info: CONNECT: @clocken0 0 0 0 0 clken 0 0 0 0
 // Retrieval info: CONNECT: q 0 0 108 0 @q_a 0 0 108 0
 // Retrieval info: GEN_FILE: TYPE_NORMAL Font_Memory.vhd TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL Font_Memory.inc FALSE
