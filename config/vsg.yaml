@@ -51,6 +51,10 @@ rule:
   if_002:
     disable: true
 
+  # Allow one-line case statements
+  case_012:
+    disable: true
+
   # Do not require indentation of use clauses
   library_008:
     disable: true
@@ -89,6 +93,10 @@ rule:
 
   # Allow one-line function declarations
   function_019:
+    disable: true
+
+  # Allow no space between function name and (
+  function_100:
     disable: true
 
   # TODO: Pending team decisions
