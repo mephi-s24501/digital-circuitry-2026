@@ -87,6 +87,10 @@ rule:
   variable_007:
     disable: true
 
+  # Allow one-line function declarations
+  function_019:
+    disable: true
+
   # TODO: Pending team decisions
   # Keep these conventions unenforced until the team agrees on them.
 
