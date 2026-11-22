@@ -1,6 +1,7 @@
 # General
 
 # Backups
+backup/
 backups/
 bak/
 bkp/
@@ -16,6 +17,7 @@ tmp/
 # Build artifacts
 .qsys_edit/
 db/
+greybox_tmp/
 incremental_db/
 output_files/
 *.done
@@ -23,6 +25,16 @@ output_files/
 *.pin
 *.rpt
 *.sld
+
+# Logs
+*.asm.rpt
+*.fit.rpt
+*.fit.summary
+*.flow.rpt
+*.map.rpt
+*.map.summary
+*.sta.rpt
+*.sta.summary
 *.summary
 
 # User settings
@@ -32,13 +44,19 @@ output_files/
 simulation/
 *.sdo
 *.vcd
+*.vwf
 
 # Programming files
 *.cdf
+*.elf
 *.jam
 *.jbc
 *.jic
+*.map
 *.pof
 *.rbf
 *.sof
 *.svf
+
+c5_pin_model_dump.txt
+*.smsg
