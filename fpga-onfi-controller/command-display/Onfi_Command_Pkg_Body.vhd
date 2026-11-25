@@ -9,6 +9,7 @@ package body Onfi_Command_Pkg is
 
   constant COMMAND_NAME_C : command_name_t :=
   (
+    ONFI_EMPTY      => "          ",
     ONFI_READ       => "READ      ",
     ONFI_READ_COPYB => "READ COPYB",
     ONFI_CHGREADCOL => "CHGREADCOL",

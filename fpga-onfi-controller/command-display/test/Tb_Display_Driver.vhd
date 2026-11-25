@@ -8,17 +8,14 @@ library ieee;
   use work.Tb_Utils_Pkg.all;
 
 -- Drives the real Framebuffer and Display_Driver, then captures the I2C
--- traffic from the SDA/SCL lines.  The GDDRAM payload of the 0x40 frame is
--- written to i2c.hex as one hex byte per line (same text format as the
--- framebuffer dump), so the rendered picture shows the actual command text.
+-- traffic from the SDA/SCL lines.  Each 0x40 frame is written as one hex byte
+-- per line (same text format as the framebuffer dump):
 --
--- The newest page is displayed on the upper two text rows and its
--- predecessor on the lower two rows:
---
---   RESET SYNC
---   0000 0000
---   PAGE PROGM
---   0012 0034
+--   i2c.hex          live view after reset
+--   i2c_pgup.hex     after one PgUp
+--   i2c_pgdown1.hex  after the first PgDown (back at the live view)
+--   i2c_pgdown2.hex  after the second PgDown
+
 entity Tb_Display_Driver is
 end entity Tb_Display_Driver;
 
@@ -33,7 +30,7 @@ architecture sim of Tb_Display_Driver is
   signal display_rst_ns : std_logic := '0';
 
   signal load_s : std_logic := '0';
-  signal cmd_s  : onfi_command_t := ONFI_READ;
+  signal cmd_s  : onfi_command_t := ONFI_EMPTY;
   signal row_s  : std_logic_vector(15 downto 0) := (others => '0');
   signal col_s  : std_logic_vector(15 downto 0) := (others => '0');
 
@@ -45,9 +42,13 @@ architecture sim of Tb_Display_Driver is
   signal scl_s : std_logic;
   signal sda_s : std_logic;
 
+  signal pgup_n_s   : std_logic := '1';
+  signal pgdown_n_s : std_logic := '1';
+
+  signal shot_s : natural range 0 to 3 := 0;
+
 begin
 
-  clk_s <= not clk_s after CLK_PERIOD_C / 2;
 
   scl_s <= 'H';
   sda_s <= 'H';
@@ -85,8 +86,8 @@ begin
       framebuf_addr_o => fb_addr_s,
       framebuf_data_i => fb_data_s,
 
-      pgup_ni   => '1',
-      pgdown_ni => '1',
+      pgup_ni   => pgup_n_s,
+      pgdown_ni => pgdown_n_s,
       draw_ni   => '1',
 
       display_rst_no => open,
@@ -97,8 +98,11 @@ begin
     );
 
   tester : entity work.Display_Driver_Tester
+    generic map (
+      CLK_PERIOD_C => CLK_PERIOD_C
+    )
     port map (
-      clk_i          => clk_s,
+      clk_o          => clk_s,
 
       fb_rst_no      => fb_rst_ns,
       busy_i         => busy_s,
@@ -108,6 +112,9 @@ begin
       col_o          => col_s,
 
       display_rst_no => display_rst_ns,
+      pgup_no        => pgup_n_s,
+      pgdown_no      => pgdown_n_s,
+      shot_o         => shot_s,
       sda_io         => sda_s,
       scl_io         => scl_s
    );

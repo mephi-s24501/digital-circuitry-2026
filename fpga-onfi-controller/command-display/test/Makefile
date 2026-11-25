@@ -2,6 +2,8 @@ BUILD     := build
 SNAPSHOTS := snaps
 STAMP     := $(BUILD)/.compiled
 
+DISPLAY_HEX := i2c.hex i2c_pgup.hex i2c_pgdown1.hex i2c_pgdown2.hex
+
 VCOM       ?= vcom
 VSIM       ?= vsim
 VCOM_FLAGS ?= -2008 -quiet
@@ -22,13 +24,13 @@ SOURCES := $(abspath                    \
   ./Tb_Display_Driver.vhd               \
 )
 
-.PHONY: all framebuffer display render clean snapshot snapshot-display snapshot-framebuffer
+.PHONY: all framebuffer display render clean snapshot snapshot-update snapshot-display snapshot-framebuffer
 
 all: snapshot render
 
-display: $(BUILD)/i2c.hex
+display: $(addprefix $(BUILD)/,$(DISPLAY_HEX))
 framebuffer: $(BUILD)/fb.hex
-render: $(BUILD)/fb.jpg $(BUILD)/i2c.jpg
+render: $(BUILD)/fb.jpg $(addprefix $(BUILD)/,$(DISPLAY_HEX:.hex=.jpg))
 snapshot : snapshot-display snapshot-framebuffer
 
 $(STAMP): $(BUILD)/Font.mif $(SOURCES)
@@ -42,8 +44,11 @@ $(BUILD)/fb.hex: $(STAMP)
 	cd $(BUILD) && $(VSIM) $(VSIM_FLAGS) -do "run -all; quit -f" work.Tb_Framebuffer
 
 $(BUILD)/i2c.hex: $(STAMP)
-	rm -f $@
+	rm -f $(addprefix $(BUILD)/,$(DISPLAY_HEX))
 	cd $(BUILD) && $(VSIM) $(VSIM_FLAGS) -do "run -all; quit -f" work.Tb_Display_Driver
+
+# Produced by the same simulation run that writes i2c.hex.
+$(BUILD)/i2c_pgup.hex $(BUILD)/i2c_pgdown1.hex $(BUILD)/i2c_pgdown2.hex: $(BUILD)/i2c.hex
 
 $(BUILD)/%.jpg: $(BUILD)/%.hex
 	python3 render_fb.py $< -o $@
@@ -58,13 +63,17 @@ snapshot-framebuffer : $(BUILD)/fb.hex $(SNAPSHOTS)/fb.hex
 		[ -t 1 ] && printf '\e[91mfb.hex bad!\e[0m\n' || echo 'fb.hex bad!'; \
 		exit 1;                                                              \
 	fi
-snapshot-display : $(BUILD)/i2c.hex $(SNAPSHOTS)/i2c.hex
-	@if cmp -s $^; then                                                        \
-		[ -t 1 ] && printf '\e[92mi2c.hex good\e[0m\n' || echo 'i2c.hex good'; \
-	else			                                                           \
-		[ -t 1 ] && printf '\e[91mi2c.hex bad!\e[0m\n' || echo 'i2c.hex bad!'; \
-		exit 1;                                                                \
-	fi
+snapshot-display : $(BUILD)/i2c.hex $(addprefix $(SNAPSHOTS)/,$(DISPLAY_HEX))
+	@ok=1;                                                                    \
+	for f in $(DISPLAY_HEX); do                                               \
+		if cmp -s $(BUILD)/$$f $(SNAPSHOTS)/$$f; then                         \
+			[ -t 1 ] && printf '\e[92m%s good\e[0m\n' $$f || echo "$$f good"; \
+		else                                                                  \
+			[ -t 1 ] && printf '\e[91m%s bad!\e[0m\n' $$f || echo "$$f bad!"; \
+			ok=0;                                                             \
+		fi;                                                                   \
+	done;                                                                     \
+	[ $$ok -eq 1 ]
 
 clean:
 	rm -rf $(BUILD)

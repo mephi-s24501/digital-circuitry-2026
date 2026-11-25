@@ -7,6 +7,7 @@ package Onfi_Command_Pkg is
   function clog2(n : natural) return natural;
 
   type onfi_command_t is (
+    ONFI_EMPTY,
     ONFI_READ,
     ONFI_READ_COPYB,
     ONFI_CHGREADCOL,

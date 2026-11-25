@@ -21,7 +21,7 @@ architecture sim of Tb_Framebuffer is
   signal clk_s     : std_logic                     := '0';
   signal rst_n_s   : std_logic                     := '0';
   signal load_s    : std_logic                     := '0';
-  signal cmd_s     : onfi_command_t                := ONFI_READ;
+  signal cmd_s     : onfi_command_t                := ONFI_EMPTY;
   signal row_s     : std_logic_vector(15 downto 0) := (others => '0');
   signal col_s     : std_logic_vector(15 downto 0) := (others => '0');
   signal ptr_s     : std_logic_vector(PTR_W_C - 1 downto 0);
@@ -30,8 +30,6 @@ architecture sim of Tb_Framebuffer is
   signal rd_data_s : std_logic_vector(FONT_DATA_WIDTH_C - 1 downto 0);
 
 begin
-
-  clk_s <= not clk_s after CLK_PERIOD_C / 2;
 
   dut : entity work.Framebuffer
     port map (
@@ -51,8 +49,11 @@ begin
     );
 
   tester : entity work.Framebuffer_Tester
+    generic map (
+      CLK_PERIOD_C => CLK_PERIOD_C
+    )
     port map (
-      clk_i     => clk_s,
+      clk_o     => clk_s,
       rst_no    => rst_n_s,
 
       busy_i    => busy_s,

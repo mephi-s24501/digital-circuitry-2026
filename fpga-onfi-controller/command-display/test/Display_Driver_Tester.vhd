@@ -8,8 +8,11 @@ library ieee;
   use work.Tb_Utils_Pkg.all;
 
 entity Display_Driver_Tester is
+  generic (
+    CLK_PERIOD_C : time := 20 ns
+  );
   port (
-    clk_i          : in std_logic;
+    clk_o          : out std_logic;
     busy_i         : in std_logic;
     load_o         : out std_logic;
     cmd_o          : out onfi_command_t;
@@ -17,15 +20,70 @@ entity Display_Driver_Tester is
     col_o          : out std_logic_vector(15 downto 0);
     fb_rst_no      : out std_logic;
     display_rst_no : out std_logic;
+    pgup_no        : out std_logic;
+    pgdown_no      : out std_logic;
+    shot_o         : out natural range 0 to 3;
     sda_io         : inout std_logic;
     scl_io         : inout std_logic
   );
 end entity Display_Driver_Tester;
 
 architecture sim of Display_Driver_Tester is
-  constant GDDRAM_BYTES_C : natural := 128 * 8;
-  constant IMG_FILE_C     : string  := "i2c.hex";
+  constant GDDRAM_BYTES_C    : natural := 128 * 8;
+  constant BTN_HOLD_CYCLES_C : natural := 10;
+  constant LAST_SHOT_C       : natural := 3;
+
+  signal clk_s  : std_logic := '0';
+  signal shot_s : natural range 0 to 3 := 0;
+
+  -- Incremented by the monitor each time a full 1024-byte frame has been
+  -- captured, so the stimulus can wait for a frame before moving the view.
+  signal frame_cnt_s : natural range 0 to 15 := 0;
+
+  -- Block until the monitor has captured at least n frames.
+  procedure wait_frames (
+    signal clk : in std_logic;
+    signal cnt : in natural;
+    constant n : in natural
+  ) is
+  begin
+    while cnt < n loop
+      wait until rising_edge(clk);
+    end loop;
+  end procedure wait_frames;
+
+  -- One exported file per captured frame.  Shot 0 is the live view before
+  -- any button press; the rest are the frames drawn after each press.
+  function img_name (
+    constant shot : in natural
+  ) return string is
+  begin
+    case shot is
+      when 1      => return "i2c_pgup.hex";
+      when 2      => return "i2c_pgdown1.hex";
+      when 3      => return "i2c_pgdown2.hex";
+      when others => return "i2c.hex";
+    end case;
+  end function img_name;
+
+  -- Active-low button press: hold long enough for the DUT synchronizer,
+  -- then release and let it settle before the next press.
+  procedure press_button(
+    signal clk : in  std_logic;
+    signal btn : out std_logic;
+    constant n : in  natural
+  ) is
+  begin
+    btn <= '0';
+    wait_cycles(clk, n);
+    btn <= '1';
+    wait_cycles(clk, n);
+  end procedure press_button;
 begin
+
+  clk_s <= not clk_s after CLK_PERIOD_C / 2;
+  clk_o <= clk_s;
+  shot_o <= shot_s;
 
   -- Fill the ring while the driver is held in reset, then release it and
   -- write the page that becomes the live view.  The driver draws once, so
@@ -34,22 +92,45 @@ begin
   begin
     fb_rst_no      <= '0';
     display_rst_no <= '0';
-    wait_cycles(clk_i, 5);
+    pgup_no        <= '1';
+    pgdown_no      <= '1';
+    shot_s         <= 0;
+    wait_cycles(clk_s, 5);
     fb_rst_no      <= '1';
 
-    wait_cycles(clk_i, 2);
+    wait_cycles(clk_s, 2);
 
-    send_page(clk_i, load_o, cmd_o, row_o, col_o, busy_i,
-              ONFI_READ, x"0000", x"0000");
+    send_page(clk_s, load_o, cmd_o, row_o, col_o, busy_i,
+              ONFI_READ, x"1111", x"0012");
 
-    send_page(clk_i, load_o, cmd_o, row_o, col_o, busy_i,
-              ONFI_PAGE_PROGM, x"0012", x"0034");
+    send_page(clk_s, load_o, cmd_o, row_o, col_o, busy_i,
+              ONFI_PAGE_PROGM, x"2222", x"1234");
 
     display_rst_no <= '1';
-    wait_cycles(clk_i, 2);
+    wait_cycles(clk_s, 2);
 
-    send_page(clk_i, load_o, cmd_o, row_o, col_o, busy_i,
-              ONFI_RESET_SYNC, x"0000", x"0000");
+    send_page(clk_s, load_o, cmd_o, row_o, col_o, busy_i,
+              ONFI_RESET_SYNC, x"3333", x"3456");
+
+    wait_frames(clk_s, frame_cnt_s, 1);
+
+    -- Move one page back.  A single PgUp only leaves one older page, so a
+    -- new command page is sent afterwards while the view is detached: live
+    -- moves on but the view stays, which gives the two PgDown presses two
+    -- distinct steps to walk (back to live).
+    shot_s <= 1;
+    press_button(clk_s, pgup_no, BTN_HOLD_CYCLES_C);
+    wait_frames(clk_s, frame_cnt_s, 2);
+
+    send_page(clk_s, load_o, cmd_o, row_o, col_o, busy_i,
+              ONFI_RESET, x"4444", x"5678");
+
+    shot_s <= 2;
+    press_button(clk_s, pgdown_no, BTN_HOLD_CYCLES_C);
+    wait_frames(clk_s, frame_cnt_s, 3);
+
+    shot_s <= 3;
+    press_button(clk_s, pgdown_no, BTN_HOLD_CYCLES_C);
 
     wait;
   end process stimulus;
@@ -64,6 +145,7 @@ begin
     variable byte_v     : std_logic_vector(7 downto 0) := (others => '0');
     variable byte_cnt_v : natural                      := 0;
     variable data_cnt_v : natural                      := 0;
+    variable shot_v     : natural range 0 to 3         := 0;
     variable in_data_v  : boolean                      := false;
     variable in_ack_v   : boolean                      := false;
   begin
@@ -84,7 +166,8 @@ begin
             null; -- slave address
           elsif (byte_cnt_v = 1) then
             if (byte_v = x"40") then
-              file_open(img_f, IMG_FILE_C, write_mode);
+              shot_v := shot_s;
+              file_open(img_f, img_name(shot_v), WRITE_MODE);
               in_data_v  := true;
               data_cnt_v := 0;
             end if;
@@ -96,10 +179,14 @@ begin
             if (data_cnt_v = GDDRAM_BYTES_C) then
               file_close(img_f);
               in_data_v := false;
-              report "Tb_Display_Driver: wrote " & integer'image(GDDRAM_BYTES_C) &
-                     " bytes to " & IMG_FILE_C
+              frame_cnt_s <= frame_cnt_s + 1;
+              report "Display_Driver_Tester: wrote " & integer'image(GDDRAM_BYTES_C) &
+                     " bytes to " & img_name(shot_v)
                 severity note;
-              finish;
+
+              if (shot_v = LAST_SHOT_C) then
+                finish;
+              end if;
             end if;
           end if;
 
@@ -113,17 +200,20 @@ begin
       if (To_X01(sda_io) = '1' and in_data_v) then
         file_close(img_f);
         in_data_v := false;
-        report "Tb_Display_Driver: exported " & integer'image(data_cnt_v) &
-               " bytes to " & IMG_FILE_C
+        frame_cnt_s <= frame_cnt_s + 1;
+        report "Display_Driver_Tester: exported " & integer'image(data_cnt_v) &
+               " bytes to " & img_name(shot_v)
           severity note;
 
         if (data_cnt_v /= GDDRAM_BYTES_C) then
-          report "Tb_Display_Driver: frame ended after " & integer'image(data_cnt_v) &
+          report "Display_Driver_Tester: frame ended after " & integer'image(data_cnt_v) &
                  " bytes, expected " & integer'image(GDDRAM_BYTES_C)
             severity warning;
         end if;
 
-        finish;
+        if (shot_v = LAST_SHOT_C) then
+          finish;
+        end if;
       end if;
 
       bit_cnt_v  := 0;

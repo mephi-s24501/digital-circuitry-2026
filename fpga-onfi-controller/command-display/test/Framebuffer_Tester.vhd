@@ -11,8 +11,11 @@ library ieee;
 -- pointer and the busy handshake, and dumps the used words of
 -- Framebuffer_Memory to fb.hex for snapshotting.
 entity Framebuffer_Tester is
+  generic (
+    CLK_PERIOD_C : time := 20 ns
+  );
   port (
-    clk_i     : in  std_logic;
+    clk_o     : out std_logic;
     rst_no    : out std_logic;
 
     busy_i    : in  std_logic;
@@ -29,6 +32,8 @@ entity Framebuffer_Tester is
 end entity Framebuffer_Tester;
 
 architecture sim of Framebuffer_Tester is
+
+  signal clk_s : std_logic := '0';
 
   --- Confirms that the framebuffer pointer is set as expected.
   procedure check_ptr (
@@ -70,45 +75,48 @@ architecture sim of Framebuffer_Tester is
 
 begin
 
+  clk_s <= not clk_s after CLK_PERIOD_C / 2;
+  clk_o <= clk_s;
+
   stimulus : process is
   begin
     rd_addr_o <= (others => '0');
     rst_no <= '0';
-    wait_cycles(clk_i, 5);
+    wait_cycles(clk_s, 5);
     rst_no <= '1';
-    wait_cycles(clk_i, 2);
+    wait_cycles(clk_s, 2);
 
     check_ptr(ptr_i, DISPLAY_FRAMEBUFFER_LEN_C - 1, "after reset");
     assert (busy_i = '0')
       report "busy high after reset"
       severity failure;
 
-    send_page(clk_i, load_o, cmd_o, row_o, col_o, busy_i,
+    send_page(clk_s, load_o, cmd_o, row_o, col_o, busy_i,
               ONFI_READ, x"0000", x"0000");
     check_ptr(ptr_i, 0, "first page");
 
-    send_page(clk_i, load_o, cmd_o, row_o, col_o, busy_i,
+    send_page(clk_s, load_o, cmd_o, row_o, col_o, busy_i,
               ONFI_PAGE_PROGM, x"0012", x"0034");
     check_ptr(ptr_i, 1, "second page");
 
-    send_page(clk_i, load_o, cmd_o, row_o, col_o, busy_i,
+    send_page(clk_s, load_o, cmd_o, row_o, col_o, busy_i,
               ONFI_RESET, x"0000", x"0000");
     check_ptr(ptr_i, 2, "third page");
 
     -- Fill the ring so that the next page has to wrap to slot 0.
     for i in 3 to DISPLAY_FRAMEBUFFER_LEN_C - 1 loop
-      send_page(clk_i, load_o, cmd_o, row_o, col_o, busy_i,
+      send_page(clk_s, load_o, cmd_o, row_o, col_o, busy_i,
                 ONFI_READ_ID,
                 conv_std_logic_vector(i, 16),
                 conv_std_logic_vector(i * 2, 16));
       check_ptr(ptr_i, i, "filling ring");
     end loop;
 
-    send_page(clk_i, load_o, cmd_o, row_o, col_o, busy_i,
+    send_page(clk_s, load_o, cmd_o, row_o, col_o, busy_i,
               ONFI_RESET_SYNC, x"0000", x"0000");
     check_ptr(ptr_i, 0, "wrap to slot 0");
 
-    dump_framebuffer(clk_i, rd_addr_o, rd_data_i, "fb.hex");
+    dump_framebuffer(clk_s, rd_addr_o, rd_data_i, "fb.hex");
 
     report "Tb_Framebuffer: PASS"
       severity note;

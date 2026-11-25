@@ -11,8 +11,8 @@ library ieee;
 -- fetched through its read port, one glyph ahead of the byte being sent.
 -- Only the displayed page index is latched per transaction.
 --
--- Default view is live: framebuf_ptr_i (newest command) on the upper two
--- text rows and framebuf_ptr_i-1 on the lower two rows.
+-- Default view is live: framebuf_ptr_i-1 (previous command) on the upper two
+-- text rows and framebuf_ptr_i (newest command) on the lower two rows.
 --
 -- PgUp#/PgDown# browse older/newer framebuffer slots; Draw# returns to the
 -- live view and forces a redraw.
@@ -262,8 +262,8 @@ begin
         tx_len_s  <= conv_std_logic_vector(DATA_LEN_C, TX_IDX_W_C);
       end if;
 
-      if (main_state_s = ST_WAIT and tx_start_s = '0' and tx_state_s = TX_IDLE) and
-         init_done_s = '1' and dirty_s = '1' and framebuf_busy_i = '0' then
+      if (main_state_s = ST_WAIT and tx_start_s = '0' and tx_state_s = TX_IDLE and
+         init_done_s = '1' and dirty_s = '1' and framebuf_busy_i = '0') then
         draw_ptr_s <= view_ptr_s;
       end if;
 
@@ -352,11 +352,13 @@ begin
       return byte_v;
     end function data_byte;
 
-    -- RAM address of the glyph that owns byte idx.  Bytes that fall outside
-    -- the text area map to address 0 and are discarded by data_byte.
+    -- RAM address of the glyph that owns byte idx.  The selected page fills
+    -- the lower two text rows and its predecessor the upper two, so older
+    -- commands scroll in at the top.  Bytes that fall outside the text area
+    -- map to address 0 and are discarded by data_byte.
     function glyph_addr(
-      idx : std_logic_vector(TX_IDX_W_C - 1 downto 0);
-      top : std_logic_vector(FB_PTR_W_C - 1 downto 0)
+      idx  : std_logic_vector(TX_IDX_W_C - 1 downto 0);
+      view : std_logic_vector(FB_PTR_W_C - 1 downto 0)
     ) return std_logic_vector is
       variable page_v : natural;
       variable col_v  : natural;
@@ -378,9 +380,9 @@ begin
         if (gx_v < GLYPH_WIDTH_C) then
           row_v := page_v / PAGES_PER_ROW_C;
           if (row_v < DISPLAY_ROWS_C) then
-            sel_v := top;
+            sel_v := prev_page(view);
           else
-            sel_v := prev_page(top);
+            sel_v := view;
           end if;
 
           addr_v := conv_integer(sel_v) * DISPLAY_PAGE_LEN_C +
