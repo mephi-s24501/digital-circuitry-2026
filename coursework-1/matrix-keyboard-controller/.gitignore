@@ -1,0 +1,19 @@
+.venv
+
+# quartus / questa
+*db
+output_files
+simulation
+**/*.qws
+**/*.rpt
+**/*.bkp
+**/*.bak
+
+# docs
+docs/literature
+docs/presentations
+docs/report/src_img
+**/*.png
+
+# drawio
+**/*.svg

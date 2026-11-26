@@ -1,0 +1,131 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 2025  Altera Corporation. All rights reserved.
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and any partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, the Altera Quartus Prime License Agreement,
+# the Altera IP License Agreement, or other applicable license
+# agreement, including, without limitation, that your use is for
+# the sole purpose of programming logic devices manufactured by
+# Altera and sold by Altera or its authorized distributors.  Please
+# refer to the Altera Software License Subscription Agreements 
+# on the Quartus Prime software download page.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus Prime
+# Version 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
+# Date created = 00:20:55  September 16, 2026
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		popcounter_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Intel recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus Prime software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone 10 LP"
+set_global_assignment -name DEVICE 10CL080YU484C8G
+set_global_assignment -name TOP_LEVEL_ENTITY popcounter
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 25.1STD.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "00:20:55  SEPTEMBER 16, 2026"
+set_global_assignment -name LAST_QUARTUS_VERSION "25.1std.0 Lite Edition"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name EDA_SIMULATION_TOOL "Questa Altera FPGA (VHDL)"
+set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_timing
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_symbol
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_signal_integrity
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH tb_popcnt -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME tb_popcnt -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id tb_popcnt
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME tb_popcnt -section_id tb_popcnt
+set_global_assignment -name TIMING_ANALYZER_MULTICORNER_ANALYSIS ON
+set_global_assignment -name NUM_PARALLEL_PROCESSORS 8
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_location_assignment PIN_G2 -to clk
+set_location_assignment PIN_P4 -to nRst
+set_location_assignment PIN_P3 -to start_i
+set_location_assignment PIN_Y4 -to done_o
+set_location_assignment PIN_B1 -to data_i[0]
+set_location_assignment PIN_B2 -to data_i[1]
+set_location_assignment PIN_B3 -to data_i[2]
+set_location_assignment PIN_A3 -to data_i[3]
+set_location_assignment PIN_B4 -to data_i[4]
+set_location_assignment PIN_A4 -to data_i[5]
+set_location_assignment PIN_B6 -to data_i[6]
+set_location_assignment PIN_A6 -to data_i[7]
+set_location_assignment PIN_A7 -to data_i[8]
+set_location_assignment PIN_A9 -to data_i[9]
+set_location_assignment PIN_B9 -to data_i[10]
+set_location_assignment PIN_A10 -to data_i[11]
+set_location_assignment PIN_B10 -to data_i[12]
+set_location_assignment PIN_D15 -to data_i[13]
+set_location_assignment PIN_B13 -to data_i[14]
+set_location_assignment PIN_A13 -to data_i[15]
+set_location_assignment PIN_V5 -to quantity_o[0]
+set_location_assignment PIN_V8 -to quantity_o[1]
+set_location_assignment PIN_V9 -to quantity_o[2]
+set_location_assignment PIN_U9 -to quantity_o[3]
+set_location_assignment PIN_V10 -to quantity_o[4]
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_SETUP_SCRIPT popcnt.do -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_FILE popcnt_tester.vhd -section_id tb_popcnt
+set_global_assignment -name EDA_TEST_BENCH_FILE tb_popcnt.vhd -section_id tb_popcnt
+set_global_assignment -name EDA_TEST_BENCH_FILE popcounter_par.vhd -section_id tb_popcnt
+set_global_assignment -name EDA_TEST_BENCH_FILE popcounter_seq.vhd -section_id tb_popcnt
+set_global_assignment -name VHDL_FILE par/popcounter_par.vhd
+set_global_assignment -name VHDL_FILE seq/popcounter_seq.vhd
+set_global_assignment -name COMMAND_MACRO_FILE popcnt.do
+set_global_assignment -name SDC_FILE popcounter.sdc
+set_global_assignment -name VHDL_FILE tb_popcnt.vhd
+set_global_assignment -name VHDL_FILE popcnt_tester.vhd
+set_global_assignment -name VHDL_FILE par/popcounter.vhd
+set_global_assignment -name VHDL_FILE seq/popcounter.vhd
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to data_i[15]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to data_i[14]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to data_i[13]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to data_i[12]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to data_i[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to data_i[10]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to data_i[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to data_i[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to data_i[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to data_i[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to data_i[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to data_i[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to data_i[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to data_i[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to data_i[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to data_i[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to clk
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to start_i
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to nRst
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to done_o
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to quantity_o[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to quantity_o[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to quantity_o[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to quantity_o[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVCMOS" -to quantity_o[0]
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
