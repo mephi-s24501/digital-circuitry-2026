@@ -20,6 +20,7 @@ jobs:
   commit-messages:
     name: Commit Messages
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
 
     steps:
       - name: Checkout repository
@@ -53,6 +54,7 @@ jobs:
   lint-files:
     name: Lint Files
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
 
     steps:
       - name: Checkout repository
@@ -68,6 +70,7 @@ jobs:
   vsg:
     name: VHDL Style (VSG)
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
 
     steps:
       - name: Checkout repository
