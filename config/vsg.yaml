@@ -1,5 +1,6 @@
 rule:
   global:
+    disable: true
     indent_size: 2
     indent_style: spaces
 
@@ -43,82 +44,5 @@ rule:
 
   # Maximum line length
   length_001:
+    disable: false
     length: 120
-
-  # Disabled VSG defaults
-
-  # Do not require parentheses around if/elsif conditions
-  if_002:
-    disable: true
-
-  # Allow one-line case statements
-  case_012:
-    disable: true
-
-  # Do not require indentation of use clauses
-  library_008:
-    disable: true
-
-  # Do not require the optional `is` keyword in process declarations
-  process_012:
-    disable: true
-
-  # Do not enforce lowercase generic names in generic maps
-  generic_map_002:
-    disable: true
-
-  # Allow direct entity instantiation
-  instantiation_034:
-    disable: true
-
-  # Do not require explicit architecture names in entity instantiations
-  instantiation_036:
-    disable: true
-
-  # Allow inline comments in port maps
-  port_map_010:
-    disable: true
-
-  # Do not enforce indentation of multiline concurrent assignments
-  concurrent_401:
-    disable: true
-
-  # Allow signal initialization at declaration
-  signal_007:
-    disable: true
-
-  # Allow variable initialization at declaration
-  variable_007:
-    disable: true
-
-  # Allow one-line function declarations
-  function_019:
-    disable: true
-
-  # Allow no space between function name and (
-  function_100:
-    disable: true
-
-  # TODO: Pending team decisions
-  # Keep these conventions unenforced until the team agrees on them.
-
-  # Internal signal naming: lower_snake_case with `_r` / `_s` suffixes
-  # signal_004:
-  #   disable: false
-  #   case: lower
-  # signal_600:
-  #   disable: false
-  #   suffixes: ['_r', '_s']
-
-  # Do not enforce spacing after port directions
-  port_007: # in
-    disable: true
-  port_008: # out
-    disable: true
-  port_009: # inout
-    disable: true
-
-  # Require the u_ prefix for instance labels
-  # instantiation_601:
-  #   disable: false
-  #   prefixes: ['u_']

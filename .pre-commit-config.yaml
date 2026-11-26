@@ -17,13 +17,6 @@ repos:
     hooks:
       - id: actionlint
 
-  # General text conventions
-  - repo: https://github.com/editorconfig-checker/editorconfig-checker
-    rev: v4.0.2
-    hooks:
-      - id: editorconfig-checker
-        args: [--disable-indent-size]
-
   # File syntax and integrity
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
@@ -69,6 +62,17 @@ repos:
     hooks:
       - id: shfmt
         args: [--diff]
+
+  # Manual checks
+
+  # General text conventions
+  - repo: https://github.com/editorconfig-checker/editorconfig-checker
+    rev: v4.0.2
+    hooks:
+      - id: editorconfig-checker
+        name: editorconfig
+        args: [--disable-indent-size]
+        stages: [manual]
 
   # VHDL style
   - repo: https://github.com/jeremiah-c-leary/vhdl-style-guide
