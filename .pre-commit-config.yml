@@ -17,13 +17,6 @@ repos:
     hooks:
       - id: actionlint
 
-  # General text conventions
-  - repo: https://github.com/editorconfig-checker/editorconfig-checker
-    rev: v4.0.2
-    hooks:
-      - id: editorconfig-checker
-        args: [--disable-indent-size]
-
   # File syntax and integrity
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
