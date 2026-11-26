@@ -1,6 +1,7 @@
 # Скрипт-конвертер шрифта в MIF файл
 
 Использование:
+
 ```sh
 python3 -m venv .venv
 source .venv/bin/activate
@@ -8,10 +9,12 @@ pip install -r requirements.txt
 
 make i=ter-u12n.bdf
 ```
+
 где ter-u12n.bdf — входной файл шрифта.
 
 Производит Font.mif — Memory Initialization File для Quartus. Затем в корне
 command-display:
+
 ```sh
 cp font2mif/Font.mif .
 ```

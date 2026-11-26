@@ -4,7 +4,7 @@ library ieee;
   use ieee.std_logic_unsigned.all;
   use std.env.all;
   use std.textio.all;
-  use work.Onfi_Command_Pkg.all;
+  use work.Command_Display_Pkg.all;
   use work.Tb_Utils_Pkg.all;
 
 -- Wires Framebuffer to Framebuffer_Tester.  The tester sends the command
@@ -50,19 +50,19 @@ begin
 
   tester : entity work.Framebuffer_Tester
     generic map (
-      CLK_PERIOD_C => CLK_PERIOD_C
+      CLK_PERIOD_G => CLK_PERIOD_C
     )
     port map (
-      clk_o     => clk_s,
-      rst_no    => rst_n_s,
+      clk_o  => clk_s,
+      rst_no => rst_n_s,
 
-      busy_i    => busy_s,
-      ptr_i     => ptr_s,
+      busy_i => busy_s,
+      ptr_i  => ptr_s,
 
-      load_o    => load_s,
-      cmd_o     => cmd_s,
-      row_o     => row_s,
-      col_o     => col_s,
+      load_o => load_s,
+      cmd_o  => cmd_s,
+      row_o  => row_s,
+      col_o  => col_s,
 
       rd_addr_o => rd_addr_s,
       rd_data_i => rd_data_s

@@ -2,7 +2,7 @@ library ieee;
   use ieee.std_logic_1164.all;
   use ieee.std_logic_arith.all;
   use ieee.std_logic_unsigned.all;
-  use work.Onfi_Command_Pkg.all;
+  use work.Command_Display_Pkg.all;
 
 -- Renders the 10x4 character area of a 128x64 SSD1306 from the rolling framebuffer.
 --
@@ -74,11 +74,9 @@ architecture rtl of Display_Driver is
 
   constant RESET_CNT_W_C : natural := clog2(RESET_TOTAL_CYCLES_C);
 
-  constant RESET_TOTAL_LAST_C : std_logic_vector(RESET_CNT_W_C - 1 downto 0) :=
-    conv_std_logic_vector(RESET_TOTAL_CYCLES_C - 1, RESET_CNT_W_C);
+  constant RESET_TOTAL_LAST_C : std_logic_vector(RESET_CNT_W_C - 1 downto 0) := conv_std_logic_vector(RESET_TOTAL_CYCLES_C - 1, RESET_CNT_W_C);
 
-  constant RESET_LOW_LEVEL_C : std_logic_vector(RESET_CNT_W_C - 1 downto 0) :=
-    conv_std_logic_vector(RESET_LOW_CYCLES_C, RESET_CNT_W_C);
+  constant RESET_LOW_LEVEL_C : std_logic_vector(RESET_CNT_W_C - 1 downto 0) := conv_std_logic_vector(RESET_LOW_CYCLES_C, RESET_CNT_W_C);
 
   type byte_t is array(natural range <>) of std_logic_vector(7 downto 0);
 
@@ -89,22 +87,35 @@ architecture rtl of Display_Driver is
   (
     x"00",
     x"AE",
-    x"D5", x"80",
-    x"A8", x"3F",
-    x"D3", x"00",
+    x"D5",
+    x"80",
+    x"A8",
+    x"3F",
+    x"D3",
+    x"00",
     x"40",
-    x"8D", x"14",
-    x"20", x"00",
+    x"8D",
+    x"14",
+    x"20",
+    x"00",
     x"A1",
     x"C8",
-    x"DA", x"12",
-    x"81", x"CF",
-    x"D9", x"F1",
-    x"DB", x"40",
+    x"DA",
+    x"12",
+    x"81",
+    x"CF",
+    x"D9",
+    x"F1",
+    x"DB",
+    x"40",
     x"A4",
     x"A6",
-    x"21", x"00", x"7F",
-    x"22", x"00", x"07",
+    x"21",
+    x"00",
+    x"7F",
+    x"22",
+    x"00",
+    x"07",
     x"AF"
   );
 
@@ -263,7 +274,7 @@ begin
       end if;
 
       if (main_state_s = ST_WAIT and tx_start_s = '0' and tx_state_s = TX_IDLE and
-         init_done_s = '1' and dirty_s = '1' and framebuf_busy_i = '0') then
+          init_done_s = '1' and dirty_s = '1' and framebuf_busy_i = '0') then
         draw_ptr_s <= view_ptr_s;
       end if;
 
@@ -358,7 +369,7 @@ begin
     -- map to address 0 and are discarded by data_byte.
     function glyph_addr(
       idx  : std_logic_vector(TX_IDX_W_C - 1 downto 0);
-      view : std_logic_vector(FB_PTR_W_C - 1 downto 0)
+      fb_view : std_logic_vector(FB_PTR_W_C - 1 downto 0)
     ) return std_logic_vector is
       variable page_v : natural;
       variable col_v  : natural;
@@ -380,9 +391,9 @@ begin
         if (gx_v < GLYPH_WIDTH_C) then
           row_v := page_v / PAGES_PER_ROW_C;
           if (row_v < DISPLAY_ROWS_C) then
-            sel_v := prev_page(view);
+            sel_v := prev_page(fb_view);
           else
-            sel_v := view;
+            sel_v := fb_view;
           end if;
 
           addr_v := conv_integer(sel_v) * DISPLAY_PAGE_LEN_C +
@@ -425,7 +436,7 @@ begin
       rd_addr_s     <= (others => '0');
     elsif rising_edge(clk_i) then
       i2c_ack_d_s <= i2c_ack_s;
-      glyph_s <= framebuf_data_i(GLYPH_BITS_C - 1 downto 0);
+      glyph_s     <= framebuf_data_i(GLYPH_BITS_C - 1 downto 0);
 
       -- The first ACK of a transaction acknowledges the slave address, not
       -- a payload byte.  Skipping it keeps the byte counter aligned with
@@ -467,7 +478,7 @@ begin
         rd_addr_s <= glyph_addr(conv_std_logic_vector(0, TX_IDX_W_C),
                                 draw_ptr_s);
       elsif (tx_state_s = TX_ACTIVE and i2c_ack_s = '1' and i2c_ack_d_s = '0' and
-            ack_skip_s = '0' and tx_idx_s /= tx_len_s - 1 and
+             ack_skip_s = '0' and tx_idx_s /= tx_len_s - 1 and
              tx_kind_s = TX_KIND_DATA and tx_idx_s + 1 < DATA_LEN_C - 1) then
         rd_addr_s <= glyph_addr(tx_idx_s + 1, draw_ptr_s);
       end if;

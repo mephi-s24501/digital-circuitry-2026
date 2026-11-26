@@ -2,7 +2,7 @@ library ieee;
   use ieee.std_logic_1164.all;
   use ieee.std_logic_arith.all;
   use ieee.std_logic_unsigned.all;
-  use work.Onfi_Command_Pkg.all;
+  use work.Command_Display_Pkg.all;
 
 -- Builds a 2x10 glyph page from an ONFI command and stores it in the
 -- Framebuffer_Memory RAM (256 x 108, the glyph lives in the low 96 bits).
@@ -63,8 +63,7 @@ begin
                     '0';
 
   -- One RAM word per glyph: page * 20 + index inside the page.
-  framebuf_addr_s <= conv_std_logic_vector(
-    conv_integer(framebuf_ptr_s) * DISPLAY_PAGE_LEN_C + conv_integer(char_idx_s), 8);
+  framebuf_addr_s <= conv_std_logic_vector(conv_integer(framebuf_ptr_s) * DISPLAY_PAGE_LEN_C + conv_integer(char_idx_s), 8);
 
   framebuf_data_s <= conv_std_logic_vector(0, FONT_DATA_WIDTH_C - GLYPH_BITS_C) & font_glyph_s;
 
@@ -126,9 +125,9 @@ begin
     if (rst_ni = '0') then
       framebuf_ptr_s <= conv_std_logic_vector(DISPLAY_FRAMEBUFFER_LEN_C - 1,
                                               clog2(DISPLAY_FRAMEBUFFER_LEN_C));
-      char_idx_s  <= (others => '0');
-      page_s      <= (others => DISPLAY_BLANK_C);
-      font_addr_s <= (others => '0');
+      char_idx_s     <= (others => '0');
+      page_s         <= (others => DISPLAY_BLANK_C);
+      font_addr_s    <= (others => '0');
     elsif rising_edge(clk_i) then
       if (state_s = IDLE and load_i = '1') then
         page_v(0 to DISPLAY_COLS_C - 1) := command_row(cmd_i);

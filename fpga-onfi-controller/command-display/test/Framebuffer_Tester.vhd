@@ -4,7 +4,7 @@ library ieee;
   use ieee.std_logic_unsigned.all;
   use std.env.all;
   use std.textio.all;
-  use work.Onfi_Command_Pkg.all;
+  use work.Command_Display_Pkg.all;
   use work.Tb_Utils_Pkg.all;
 
 -- Drives Framebuffer with a handful of command pages, checks the rolling
@@ -12,19 +12,19 @@ library ieee;
 -- Framebuffer_Memory to fb.hex for snapshotting.
 entity Framebuffer_Tester is
   generic (
-    CLK_PERIOD_C : time := 20 ns
+    CLK_PERIOD_G : time := 20 ns
   );
   port (
-    clk_o     : out std_logic;
-    rst_no    : out std_logic;
+    clk_o  : out std_logic;
+    rst_no : out std_logic;
 
-    busy_i    : in  std_logic;
-    ptr_i     : in  std_logic_vector(clog2(DISPLAY_FRAMEBUFFER_LEN_C) - 1 downto 0);
+    busy_i : in  std_logic;
+    ptr_i  : in  std_logic_vector(clog2(DISPLAY_FRAMEBUFFER_LEN_C) - 1 downto 0);
 
-    load_o    : out std_logic;
-    cmd_o     : out onfi_command_t;
-    row_o     : out std_logic_vector(15 downto 0);
-    col_o     : out std_logic_vector(15 downto 0);
+    load_o : out std_logic;
+    cmd_o  : out onfi_command_t;
+    row_o  : out std_logic_vector(15 downto 0);
+    col_o  : out std_logic_vector(15 downto 0);
 
     rd_addr_o : out std_logic_vector(7 downto 0);
     rd_data_i : in  std_logic_vector(FONT_DATA_WIDTH_C - 1 downto 0)
@@ -75,15 +75,15 @@ architecture sim of Framebuffer_Tester is
 
 begin
 
-  clk_s <= not clk_s after CLK_PERIOD_C / 2;
+  clk_s <= not clk_s after CLK_PERIOD_G / 2;
   clk_o <= clk_s;
 
   stimulus : process is
   begin
     rd_addr_o <= (others => '0');
-    rst_no <= '0';
+    rst_no    <= '0';
     wait_cycles(clk_s, 5);
-    rst_no <= '1';
+    rst_no    <= '1';
     wait_cycles(clk_s, 2);
 
     check_ptr(ptr_i, DISPLAY_FRAMEBUFFER_LEN_C - 1, "after reset");

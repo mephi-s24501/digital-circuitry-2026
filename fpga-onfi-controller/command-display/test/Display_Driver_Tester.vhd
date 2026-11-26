@@ -4,12 +4,12 @@ library ieee;
   use ieee.std_logic_unsigned.all;
   use std.env.all;
   use std.textio.all;
-  use work.Onfi_Command_Pkg.all;
+  use work.Command_Display_Pkg.all;
   use work.Tb_Utils_Pkg.all;
 
 entity Display_Driver_Tester is
   generic (
-    CLK_PERIOD_C : time := 20 ns
+    CLK_PERIOD_G : time := 20 ns
   );
   port (
     clk_o          : out std_logic;
@@ -33,7 +33,7 @@ architecture sim of Display_Driver_Tester is
   constant BTN_HOLD_CYCLES_C : natural := 10;
   constant LAST_SHOT_C       : natural := 3;
 
-  signal clk_s  : std_logic := '0';
+  signal clk_s  : std_logic            := '0';
   signal shot_s : natural range 0 to 3 := 0;
 
   -- Incremented by the monitor each time a full 1024-byte frame has been
@@ -59,16 +59,16 @@ architecture sim of Display_Driver_Tester is
   ) return string is
   begin
     case shot is
-      when 1      => return "i2c_pgup.hex";
-      when 2      => return "i2c_pgdown1.hex";
-      when 3      => return "i2c_pgdown2.hex";
+      when 1 => return "i2c_pgup.hex";
+      when 2 => return "i2c_pgdown1.hex";
+      when 3 => return "i2c_pgdown2.hex";
       when others => return "i2c.hex";
     end case;
   end function img_name;
 
   -- Active-low button press: hold long enough for the DUT synchronizer,
   -- then release and let it settle before the next press.
-  procedure press_button(
+  procedure press_button (
     signal clk : in  std_logic;
     signal btn : out std_logic;
     constant n : in  natural
@@ -81,8 +81,8 @@ architecture sim of Display_Driver_Tester is
   end procedure press_button;
 begin
 
-  clk_s <= not clk_s after CLK_PERIOD_C / 2;
-  clk_o <= clk_s;
+  clk_s  <= not clk_s after CLK_PERIOD_G / 2;
+  clk_o  <= clk_s;
   shot_o <= shot_s;
 
   -- Fill the ring while the driver is held in reset, then release it and
@@ -166,7 +166,7 @@ begin
             null; -- slave address
           elsif (byte_cnt_v = 1) then
             if (byte_v = x"40") then
-              shot_v := shot_s;
+              shot_v     := shot_s;
               file_open(img_f, img_name(shot_v), WRITE_MODE);
               in_data_v  := true;
               data_cnt_v := 0;
@@ -178,7 +178,7 @@ begin
 
             if (data_cnt_v = GDDRAM_BYTES_C) then
               file_close(img_f);
-              in_data_v := false;
+              in_data_v   := false;
               frame_cnt_s <= frame_cnt_s + 1;
               report "Display_Driver_Tester: wrote " & integer'image(GDDRAM_BYTES_C) &
                      " bytes to " & img_name(shot_v)
@@ -199,7 +199,7 @@ begin
     if sda_io'event and To_X01(scl_io) = '1' then
       if (To_X01(sda_io) = '1' and in_data_v) then
         file_close(img_f);
-        in_data_v := false;
+        in_data_v   := false;
         frame_cnt_s <= frame_cnt_s + 1;
         report "Display_Driver_Tester: exported " & integer'image(data_cnt_v) &
                " bytes to " & img_name(shot_v)

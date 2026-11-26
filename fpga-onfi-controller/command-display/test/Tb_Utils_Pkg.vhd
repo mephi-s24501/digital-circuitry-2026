@@ -1,6 +1,6 @@
 library ieee;
   use ieee.std_logic_1164.all;
-  use work.Onfi_Command_Pkg.all;
+  use work.Command_Display_Pkg.all;
 
 -- Small helpers shared by the testbenches.
 package Tb_Utils_Pkg is

@@ -1,6 +1,6 @@
 library ieee;
   use ieee.std_logic_1164.all;
-  use work.Onfi_Command_Pkg.all;
+  use work.Command_Display_Pkg.all;
 
 entity Command_Display is
   generic (
@@ -41,8 +41,8 @@ end entity Command_Display;
 architecture behavioral of Command_Display is
   signal framebuf_ptr_s  : std_logic_vector(clog2(DISPLAY_FRAMEBUFFER_LEN_C) - 1 downto 0);
   signal framebuf_busy_s : std_logic;
-  signal framebuf_addr_s    : std_logic_vector(7 downto 0);
-  signal framebuf_data_s    : std_logic_vector(FONT_DATA_WIDTH_C - 1 downto 0);
+  signal framebuf_addr_s : std_logic_vector(7 downto 0);
+  signal framebuf_data_s : std_logic_vector(FONT_DATA_WIDTH_C - 1 downto 0);
 begin
   assert ONFI_DQ_SIZE_G = 8 or ONFI_DQ_SIZE_G = 16
     report "ONFI_DQ_SIZE_G can only be 8 or 16 as per ONFI spec"
