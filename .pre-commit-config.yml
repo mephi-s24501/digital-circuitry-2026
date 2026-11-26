@@ -63,6 +63,17 @@ repos:
       - id: shfmt
         args: [--diff]
 
+  # Manual checks
+
+  # General text conventions
+  - repo: https://github.com/editorconfig-checker/editorconfig-checker
+    rev: v4.0.2
+    hooks:
+      - id: editorconfig-checker
+        name: editorconfig
+        args: [--disable-indent-size]
+        stages: [manual]
+
   # VHDL style
   - repo: https://github.com/jeremiah-c-leary/vhdl-style-guide
     rev: 3.35.0
