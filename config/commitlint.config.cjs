@@ -1,11 +1,3 @@
-// DEFAULT
-//
-// module.exports = {
-//   extends: ['@commitlint/config-conventional'],
-// };
-
-// CUSTOM
-
 module.exports = {
   extends: ['@commitlint/config-conventional'],
   plugins: [
