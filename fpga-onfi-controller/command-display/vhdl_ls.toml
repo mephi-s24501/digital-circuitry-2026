@@ -1,0 +1,8 @@
+standard = "2008"
+
+[libraries.command_display]
+files = [
+    'test/*.vhd',
+    'ip/*.vhd',
+    '*.vhd'
+]
