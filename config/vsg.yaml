@@ -6,15 +6,13 @@ rule:
 
   group:
     case::keyword:
+      disable: false
       case: lower
     case::label:
+      disable: false
       case: lower
-    case::name:
-      disable: true
-    blank_line:
-      disable: true
 
-  # Generic naming: UPPER_SNAKE_CASE with `_G` suffix
+  # Generic naming
   generic_007:
     disable: false
     case: upper
@@ -22,7 +20,7 @@ rule:
     disable: false
     suffixes: ['_G']
 
-  # Constant naming: UPPER_SNAKE_CASE with `_C` suffix
+  # Constant naming
   constant_004:
     disable: false
     case: upper
@@ -31,7 +29,6 @@ rule:
     suffixes: ['_C']
 
   # Port direction suffixes
-  # TODO: Active-low naming is not yet standardized.
   port_605:
     disable: false
     suffixes: ['_i', '_ni']
@@ -41,6 +38,12 @@ rule:
   port_607:
     disable: false
     suffixes: ['_io', '_nio']
+
+  # Named associations
+  generic_map_008:
+    disable: false
+  port_map_008:
+    disable: false
 
   # Maximum line length
   length_001:
