@@ -81,4 +81,5 @@ repos:
       - id: vsg
         name: VHDL style (check only)
         entry: vsg --all_phases --jobs=1 --configuration config/vsg.yaml --filename
+        exclude: '^fpga-onfi-controller/[^/]+/(ip|vendor)/'
         stages: [manual]
