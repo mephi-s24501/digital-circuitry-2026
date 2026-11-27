@@ -5,7 +5,6 @@ on:
     branches:
       - main
       - develop
-
   push:
     branches:
       - develop
@@ -13,10 +12,15 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
+
 jobs:
   commit-messages:
     name: Commit Messages
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
 
     steps:
       - name: Checkout repository
@@ -36,6 +40,7 @@ jobs:
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha || github.event.after }}
+          FORCE_PUSH: ${{ github.event.forced || false }}
         run: |
           if [[ "$GITHUB_EVENT_NAME" == "push" ]] &&
             { [[ "$FORCE_PUSH" == "true" ]] ||
@@ -49,6 +54,7 @@ jobs:
   lint-files:
     name: Lint Files
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
 
     steps:
       - name: Checkout repository
@@ -64,6 +70,7 @@ jobs:
   vsg:
     name: VHDL Style (VSG)
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
 
     steps:
       - name: Checkout repository
